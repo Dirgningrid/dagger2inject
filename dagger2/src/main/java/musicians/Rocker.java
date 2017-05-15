@@ -1,30 +1,34 @@
 package musicians;
 
+import instruments.Drums;
 import instruments.ElectricGuitar;
 
 /**
  * Created by ingrid on 14/05/17.
  */
-public class Rocker implements Guitarist, Singer {
+public class Rocker implements Guitarist, Drummer {
 
-    private long decibel;
     private ElectricGuitar guitar;
+    private Drums drums;
 
     public Rocker(ElectricGuitar guitar){
         this.guitar = guitar;
     }
 
-    public Rocker(long decibel){
-        this.decibel = decibel;
+    public Rocker(Drums drums){
+        this.drums = drums;
     }
 
     @Override
-    public void play() {
-        guitar.genere();
+    public void playGuitar() {
+        guitar.choose();
     }
 
-    @Override
-    public void voiceDecibel() {
 
+    @Override
+    public void letsGetBeat(int plates, int basses) {
+        drums.setNumBass(basses);
+        drums.setNumPlates(plates);
+        drums.letsBeat();
     }
 }

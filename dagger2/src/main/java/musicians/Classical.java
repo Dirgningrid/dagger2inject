@@ -13,8 +13,8 @@ public class Classical implements Guitarist {
     }
 
     @Override
-    public void play() {
-        guitar.genere();
+    public void playGuitar() {
+        guitar.choose();
     }
 
 }

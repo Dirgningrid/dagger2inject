@@ -1,9 +1,7 @@
 import instruments.ClassicalGuitar;
+import instruments.Drums;
 import instruments.ElectricGuitar;
-import musicians.Classical;
-import musicians.Guitarist;
-import musicians.Rocker;
-import musicians.Singer;
+import musicians.*;
 
 /**
  * Created by ingrid on 14/05/17.
@@ -14,11 +12,14 @@ public class Main {
 
         Band band;
 
-        Singer singer = new Rocker(75);
+        Singer singer = new Singer();
+        singer.setDecibel(75);
 
         Guitarist guitarist = new Rocker(new ElectricGuitar());
 
-        band = new Band(guitarist, singer);
+        Drummer drummer = new Rocker(new Drums());
+
+        band = new Band(guitarist, singer, drummer);
 
         band.playSomething();
 

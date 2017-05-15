@@ -1,6 +1,5 @@
-import musicians.Classical;
+import musicians.Drummer;
 import musicians.Guitarist;
-import musicians.Rocker;
 import musicians.Singer;
 
 /**
@@ -9,14 +8,28 @@ import musicians.Singer;
 public class Band {
     private Guitarist guitarPlayer;
     private Singer singer;
+    private Drummer drummer;
 
-    public Band(Guitarist guitarist, Singer singer) {
+    public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
         this.guitarPlayer = guitarist;
         this.singer = singer;
+        this.drummer = drummer;
     }
 
     public void playSomething(){
-        guitarPlayer.play();
+
+        if(guitarPlayer != null){
+            guitarPlayer.playGuitar();
+        }
+
+        if(singer != null){
+            singer.singingSomething();
+        }
+
+        if(drummer != null){
+            drummer.letsGetBeat(8, 2);
+        }
+
     }
 
 }

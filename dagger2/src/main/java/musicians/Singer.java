@@ -6,7 +6,15 @@ import dagger.Module;
  * Created by ingrid on 14/05/17.
  */
 
-public interface Singer {
+public class Singer {
 
-    public void voiceDecibel();
+    private long decibel;
+
+    public void setDecibel(long decibel) {
+        this.decibel = decibel;
+    }
+
+    public void singingSomething(){
+        System.out.println("I'm Axl Rose");
+    }
 }

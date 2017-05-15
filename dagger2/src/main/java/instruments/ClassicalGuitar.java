@@ -1,11 +1,9 @@
 package instruments;
 
-import musicians.Classical;
-
 /**
  * Created by ingrid on 14/05/17.
  */
-public class ClassicalGuitar implements Instrument {
+public class ClassicalGuitar implements Guitar {
     private String bach = "Toccata e fuga in Re minore";
     private String mina = "Se telefonando";
 
@@ -24,7 +22,7 @@ public class ClassicalGuitar implements Instrument {
     }
 
     @Override
-    public void genere() {
+    public void choose() {
         if(acustic){
             System.out.println(mina);
         } else {
