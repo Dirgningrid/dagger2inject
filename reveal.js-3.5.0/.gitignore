@@ -1,4 +1,6 @@
 .idea/
+.dagger2/
+
 *.iml
 *.iws
 *.eml
