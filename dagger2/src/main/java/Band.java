@@ -10,10 +10,9 @@ public class Band {
     private Guitarist guitarPlayer;
     private Singer singer;
 
-    public Band() {
-        this.guitarPlayer = new Rocker();
-        this.singer = new Singer();
-        singer.setVoiceDecibel(70);
+    public Band(Guitarist guitarist, Singer singer) {
+        this.guitarPlayer = guitarist;
+        this.singer = singer;
     }
 
     public void playSomething(){

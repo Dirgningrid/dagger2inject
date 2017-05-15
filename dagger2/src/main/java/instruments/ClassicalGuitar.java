@@ -1,5 +1,7 @@
 package instruments;
 
+import musicians.Classical;
+
 /**
  * Created by ingrid on 14/05/17.
  */
@@ -15,6 +17,10 @@ public class ClassicalGuitar implements Instrument {
 
     public void setAcustic(boolean acustic) {
         this.acustic = acustic;
+    }
+
+    public ClassicalGuitar(boolean isAcustic){
+        this.acustic = isAcustic;
     }
 
     @Override

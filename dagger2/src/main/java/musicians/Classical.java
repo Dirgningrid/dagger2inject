@@ -8,9 +8,8 @@ import instruments.ClassicalGuitar;
 public class Classical implements Guitarist {
     private ClassicalGuitar guitar;
 
-    public Classical(){
-        guitar = new ClassicalGuitar();
-        guitar.setAcustic(false);
+    public Classical(ClassicalGuitar guitar){
+        this.guitar = guitar;
     }
 
     @Override
