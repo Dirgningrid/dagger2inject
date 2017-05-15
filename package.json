@@ -1,0 +1,21 @@
+{
+  "name": "dagger2inject",
+  "version": "1.0.0",
+  "description": "Dependecy Injection &amp; Dagger2 examples",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dirgningrid/dagger2inject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dirgningrid/dagger2inject/issues"
+  },
+  "homepage": "https://github.com/Dirgningrid/dagger2inject#readme"
+}
