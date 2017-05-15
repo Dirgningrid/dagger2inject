@@ -1,4 +1,5 @@
 import instruments.ClassicalGuitar;
+import instruments.ElectricGuitar;
 import musicians.Classical;
 import musicians.Guitarist;
 import musicians.Rocker;
@@ -13,10 +14,9 @@ public class Main {
 
         Band band;
 
-        Singer singer = new Singer();
-        singer.setVoiceDecibel(70);
+        Singer singer = new Rocker(75);
 
-        Guitarist guitarist = new Classical(new ClassicalGuitar(false));
+        Guitarist guitarist = new Rocker(new ElectricGuitar());
 
         band = new Band(guitarist, singer);
 
