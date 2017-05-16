@@ -3,7 +3,7 @@ package didag2.example.dagger;
 import dagger.Module;
 import dagger.Provides;
 import didag2.example.instruments.ClassicalGuitar;
-import didag2.example.musicians.Classical;
+import didag2.example.musicians.ClassicalGuitarist;
 
 /**
  * Created by ingrid on 16/05/17.
@@ -15,8 +15,8 @@ public class ClassicalModule {
     ClassicalGuitar guitar;
 
     @Provides
-    Classical provides(){
-        return new Classical(guitar);
+    ClassicalGuitarist provides(){
+        return new ClassicalGuitarist(guitar);
     }
 
 }

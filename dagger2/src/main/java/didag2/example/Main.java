@@ -1,6 +1,7 @@
 package didag2.example;
 
-import didag2.example.Band;
+import didag2.example.dagger.BandComponent;
+import didag2.example.dagger.DaggerBandComponent;
 import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
 import didag2.example.musicians.*;
@@ -12,18 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Band band;
+        BandComponent component =
+                DaggerBandComponent
+                .builder()
+                .build();
 
-        Singer singer = new Singer();
-        singer.setDecibel(75);
 
-        Guitarist guitarist = new Rocker(new ElectricGuitar());
-
-        Drummer drummer = new Rocker(new Drums());
-
-        band = new Band(guitarist, singer, drummer);
-
-        band.playSomething();
-
+        component.injectBand().playSomething();
     }
 }

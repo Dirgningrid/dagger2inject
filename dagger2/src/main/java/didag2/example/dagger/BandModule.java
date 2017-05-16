@@ -3,9 +3,9 @@ package didag2.example.dagger;
 import didag2.example.Band;
 import dagger.Module;
 import dagger.Provides;
-import didag2.example.musicians.Drummer;
-import didag2.example.musicians.Guitarist;
-import didag2.example.musicians.Singer;
+import didag2.example.instruments.Drums;
+import didag2.example.instruments.ElectricGuitar;
+import didag2.example.musicians.*;
 
 /**
  * Created by ingrid on 16/05/17.
@@ -14,13 +14,33 @@ import didag2.example.musicians.Singer;
 @Module
 public class BandModule {
 
-    Guitarist guitarist;
-    Singer singer;
-    Drummer drummer;
-
+    @Provides
+    public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
+        return new Band(guitarist, singer, drummer);
+    }
 
     @Provides
-    Band providesBand(){
-        return new Band(guitarist, singer, drummer);
+    public Guitarist providesGuitarist(ElectricGuitar guitar){
+        return new RockerGuitarist(guitar);
+    }
+
+    @Provides
+    public ElectricGuitar providesGuitar(){
+        return new ElectricGuitar();
+    }
+
+    @Provides
+    public Singer providesSinger(){
+        return new Singer();
+    }
+
+    @Provides
+    public Drummer providesDrummer(Drums drums){
+        return new RockerDrummer(drums);
+    }
+
+    @Provides
+    public Drums providesDrums(){
+        return new Drums();
     }
 }

@@ -2,11 +2,33 @@ group 'ingrid'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+sourceSets {
+    dagger {
+        java {
+            srcDirs = ['src/autogenerate']
+        }
+    }
+}
+
+configurations {
+    compileDagger
+}
+
+compileJava {
+    description = "dagger annotation processor is loaded automatically from classpath"
+    sourceSets.dagger.java.srcDirs*.mkdirs()
+    classpath += configurations.compileDagger
+    options.compilerArgs += [
+            '-s', sourceSets.dagger.java.srcDirs.iterator().next()
+    ]
 }
 
 final DAGGER_VERSION = '2.8'
@@ -17,5 +39,5 @@ dependencies {
 
 
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    compile 'com.google.dagger:dagger-compiler:${DAGGER_VERSION};jar-with-dependencies'
+    compileDagger "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 }

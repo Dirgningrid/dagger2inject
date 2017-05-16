@@ -1,6 +1,7 @@
 package didag2.example.dagger;
 
 import dagger.Component;
+import didag2.example.Band;
 import didag2.example.Main;
 
 /**
@@ -10,6 +11,5 @@ import didag2.example.Main;
 @Component(modules = BandModule.class)
 public interface BandComponent {
 
-    void inject(Main main);
-
+    Band injectBand();
 }
