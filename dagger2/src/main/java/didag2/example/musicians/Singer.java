@@ -12,7 +12,7 @@ public class Singer {
         this.decibel = decibel;
     }
 
-    public void singingSomething(){
-        System.out.println("I'm Axl Rose");
+    public String singingSomething(){
+        return "I'm Axl Rose";
     }
 }

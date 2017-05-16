@@ -13,12 +13,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        String weWillRockYou;
+
         BandComponent component =
                 DaggerBandComponent
                 .builder()
                 .build();
 
 
-        component.injectBand().playSomething();
+        weWillRockYou = component.injectBand().playSomething();
+
+        System.out.println(weWillRockYou);
     }
 }

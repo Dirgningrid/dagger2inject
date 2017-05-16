@@ -14,9 +14,9 @@ public class RockerDrummer implements Drummer {
     }
 
     @Override
-    public void letsGetBeat(int plates, int basses) {
+    public String letsGetBeat(int plates, int basses) {
         drums.setNumBass(basses);
         drums.setNumPlates(plates);
-        drums.letsBeat();
+        return drums.letsBeat();
     }
 }

@@ -8,7 +8,7 @@ public class ElectricGuitar implements Guitar {
     private String gunsNRoses = "November Rain";
 
     @Override
-    public void choose() {
-        System.out.println(gunsNRoses);
+    public String choose() {
+        return gunsNRoses;
     }
 }

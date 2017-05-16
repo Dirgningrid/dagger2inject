@@ -15,8 +15,8 @@ public class RockerGuitarist implements Guitarist {
     }
 
     @Override
-    public void playGuitar() {
-        guitar.choose();
+    public String playGuitar() {
+        return guitar.choose();
     }
 
 }

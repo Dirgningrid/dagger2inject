@@ -24,7 +24,7 @@ public class Drums {
         this.numBass = numBass;
     }
 
-    public void letsBeat(){
-        System.out.println("Let's Rock!");
+    public String letsBeat(){
+        return "Let's Rock!";
     }
 }

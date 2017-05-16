@@ -5,6 +5,6 @@ package didag2.example.musicians;
  */
 public interface Drummer {
     
-    void letsGetBeat(int plates, int basses);
+    String letsGetBeat(int plates, int basses);
     
 }

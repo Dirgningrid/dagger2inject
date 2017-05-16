@@ -22,12 +22,11 @@ public class ClassicalGuitar implements Guitar {
     }
 
     @Override
-    public void choose() {
+    public String choose() {
         if(acustic){
-            System.out.println(mina);
+            return mina;
         } else {
-            System.out.println(bach);
+            return bach;
         }
-
     }
 }

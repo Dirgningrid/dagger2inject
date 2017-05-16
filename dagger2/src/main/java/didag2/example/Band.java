@@ -18,20 +18,25 @@ public class Band {
         this.drummer = drummer;
     }
 
-    public void playSomething(){
+    public String playSomething(){
+
+        String specialSong = "";
 
         if(guitarPlayer != null){
-            guitarPlayer.playGuitar();
+            specialSong += guitarPlayer.playGuitar();
         }
 
         if(singer != null){
-            singer.singingSomething();
+            specialSong += "\n";
+            specialSong += singer.singingSomething();
         }
 
         if(drummer != null){
-            drummer.letsGetBeat(8, 2);
+            specialSong += "\n";
+            specialSong += drummer.letsGetBeat(8, 2);
         }
 
+        return specialSong;
     }
 
 }
