@@ -5,10 +5,10 @@ import didag2.example.instruments.ClassicalGuitar;
 /**
  * Created by ingrid on 14/05/17.
  */
-public class Classical implements Guitarist {
+public class ClassicalGuitarist implements Guitarist {
     private ClassicalGuitar guitar;
 
-    public Classical(ClassicalGuitar guitar){
+    public ClassicalGuitarist(ClassicalGuitar guitar){
         this.guitar = guitar;
     }
 
