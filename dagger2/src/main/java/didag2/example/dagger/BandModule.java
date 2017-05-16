@@ -25,11 +25,6 @@ public class BandModule {
     }
 
     @Provides
-    public ElectricGuitar providesGuitar(){
-        return new ElectricGuitar();
-    }
-
-    @Provides
     public Singer providesSinger(){
         return new Singer();
     }
@@ -37,10 +32,5 @@ public class BandModule {
     @Provides
     public Drummer providesDrummer(Drums drums){
         return new RockerDrummer(drums);
-    }
-
-    @Provides
-    public Drums providesDrums(){
-        return new Drums();
     }
 }
