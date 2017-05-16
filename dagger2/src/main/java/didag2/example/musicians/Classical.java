@@ -1,6 +1,6 @@
-package musicians;
+package didag2.example.musicians;
 
-import instruments.ClassicalGuitar;
+import didag2.example.instruments.ClassicalGuitar;
 
 /**
  * Created by ingrid on 14/05/17.

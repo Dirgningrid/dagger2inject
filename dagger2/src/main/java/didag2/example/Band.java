@@ -1,6 +1,8 @@
-import musicians.Drummer;
-import musicians.Guitarist;
-import musicians.Singer;
+package didag2.example;
+
+import didag2.example.musicians.Drummer;
+import didag2.example.musicians.Guitarist;
+import didag2.example.musicians.Singer;
 
 /**
  * Created by ingrid on 14/05/17.

@@ -1,4 +1,4 @@
-package instruments;
+package didag2.example.instruments;
 
 /**
  * Created by ingrid on 14/05/17.
