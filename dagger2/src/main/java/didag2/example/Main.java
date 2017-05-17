@@ -20,9 +20,13 @@ public class Main {
                 .builder()
                 .build();
 
+        //Band band = component.injectBand();
+        //weWillRockYou = band.playSomething();
 
-        weWillRockYou = component.injectBand().playSomething();
+        //System.out.println(weWillRockYou);
 
-        System.out.println(weWillRockYou);
+        RockTown rt = component.injectRockTown();
+
+
     }
 }

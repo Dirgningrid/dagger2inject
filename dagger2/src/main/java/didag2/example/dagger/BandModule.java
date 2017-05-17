@@ -15,11 +15,6 @@ import didag2.example.musicians.*;
 public class BandModule {
 
     @Provides
-    public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
-        return new Band(guitarist, singer, drummer);
-    }
-
-    @Provides
     public Guitarist providesGuitarist(ElectricGuitar guitar){
         return new RockerGuitarist(guitar);
     }
