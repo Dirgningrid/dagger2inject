@@ -5,14 +5,13 @@ import instruments.ElectricGuitar;
 /**
  * Created by ingrid on 14/05/17.
  */
-public class Rocker implements Guitarist {
+public class RockerGuitarist {
     private ElectricGuitar guitar;
 
-    public Rocker(){
+    public RockerGuitarist(){
         guitar = new ElectricGuitar();
     }
 
-    @Override
     public void play() {
         guitar.genere();
     }

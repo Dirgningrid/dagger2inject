@@ -9,4 +9,8 @@ public class Singer {
     public void setVoiceDecibel(long voiceDecibel) {
         this.voiceDecibel = voiceDecibel;
     }
+
+    public void singingSomething(){
+        System.out.println("I'm Axl Rose");
+    }
 }
