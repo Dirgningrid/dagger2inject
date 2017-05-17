@@ -5,11 +5,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Band band;
+        DepositoGiordani depositoGiordani;
 
-        band = new Band();
+        depositoGiordani = new DepositoGiordani();
 
-        band.playSomething();
+        depositoGiordani.claimRockBand();
 
     }
 }

@@ -18,5 +18,4 @@ public class RockerDrummer {
         drums.setNumPlates(plates);
         drums.letsBeat();
     }
-
 }
