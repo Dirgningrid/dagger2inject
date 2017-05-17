@@ -72,7 +72,7 @@
 
 				<section>
 					<h3>DepositoGiordani</h3>
-					<div class="left">
+
 						<pre style="width: auto"><code class="hljs" data-trim>
 public class DepositoGiordani {
 
@@ -87,11 +87,11 @@ public class DepositoGiordani {
  }
 }
 						</code></pre>
-					</div>
+
 
 					<div class="left">
 						<ul>
-							<li>il Deposito ha bisogno di una Band</li>
+							<li>il DepositoGiordani ha bisogno di una Band</li>
 							<li>usa il suo costruttore per istanziarla</li>
 						</ul>
 					</div>
@@ -100,8 +100,8 @@ public class DepositoGiordani {
 				<section>
 				<section>
 					<h3>Band</h3>
-						<div class="left">
-						<pre><code class="hljs" data-trim >
+
+						<pre style="width: auto"><code class="hljs" data-trim>
 public class Band {
 
  private RockerGuitarist guitarPlayer;
@@ -116,11 +116,11 @@ public class Band {
  }
 
  public void playSomething(){
-  ...
+	...
   }
 }
 						</code></pre>
-					</div>
+
 					<div class="left">
 						<ul>
 							<li>anche la Band dipende dai suoi musicisti</li>
@@ -129,13 +129,13 @@ public class Band {
 					</div>
 
 				</section>
-				<section data-transition="zoom">
+				<section data-transition="fade">
 					<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
 				</section>
 				</section>
 
 				<section>
-					<h3>Diamo un'occhiata al Main</h3>
+					<h5>Diamo un'occhiata al Main</h5>
 					<pre><code>
 public class Main {
 
@@ -150,7 +150,19 @@ public class Main {
  }
 }
 					</code></pre>
+					<p class="fragment grow">Come fareste il test?</p>
 				</section>
+
+				<section>
+					<ul>
+						<li>fare di ogni oggetto un mock?
+						<p class="fragment highlight-red">Non è testabile</p></li>
+
+						<li>e se la band fosse solo composta da un cantante e un chitarrista?
+						<p class="fragment highlight-red">Non è riutilizzabile</p></li>
+					</ul>
+				</section>
+
 			</div>
 		</div>
 
