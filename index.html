@@ -9,6 +9,7 @@
 
 		<link rel="stylesheet" href="reveal.js-3.5.0/css/reveal.css">
 		<link rel="stylesheet" href="reveal.js-3.5.0/css/theme/solarized.css">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="reveal.js-3.5.0/lib/css/zenburn.css">
@@ -33,14 +34,18 @@
 				<section>
 					<h2>Dagger 2</h2>
 					<ul>
-						<li>è un framework</li>
-						<li>crea classi di supporto, allo scopo di istanziare gli oggetti in modo flessibile e veloce</li>
+						<li>è un framework basato sulla dependency injection</li>
+						<li>istanzia oggetti diversi tra release e test</li>
 					</ul>
 				</section>
 
 				<section>
 					<h3>Case study:</h3>
-					<p>Supponiamo di essere un locale che organizza concerti di ogni genere e la prossima serata vuole chiamare una Rock Band</p>
+					<p>Supponiamo di essere un locale che organizza concerti</p>
+					<p class="fragment">la prossima serata sarà dedicata ad un gruppo Rock</p>
+					<br>
+					<br>Come fare?</h4>
+
 				</section>
 
 				<!--<section>-->
@@ -57,28 +62,27 @@
 						<!--</ul>-->
 					<!--</section>-->
 				<!--</section>-->
-
+				<section>
+					<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
+				</section>
 
 				<section>
-
 					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
- if( supports3DTransforms ) {
+		public class DepositoGiordani {
 
-  var nodes = document.querySelectorAll( selector );
+		 private Band band;
 
-  for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-   var node = nodes[i];
+		 public DepositoGiordani(){
+		  this.band = new Band();
+		 }
 
-   if( !node.className ) {
-    node.className += ' roll';
-   }
-  }
- }
-}
+		 public void claimRockBand(){
+		  band.playSomething();
+		 }
+		}
 					</code></pre>
-
 				</section>
+
 			</div>
 		</div>
 
@@ -89,7 +93,7 @@ function linkify( selector ) {
 			Reveal.initialize({
 				controls: true,
 				progress: true,
-				history: true,
+				history: false,
 				center: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
