@@ -9,7 +9,6 @@
 
 		<link rel="stylesheet" href="reveal.js-3.5.0/css/reveal.css">
 		<link rel="stylesheet" href="reveal.js-3.5.0/css/theme/solarized.css">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="reveal.js-3.5.0/lib/css/zenburn.css">
@@ -22,6 +21,8 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.5.0/css/print/pdf.css' : 'reveal.js-3.5.0/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<link rel="stylesheet" href="reveal.js-3.5.0/css/mystyle.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -35,17 +36,19 @@
 					<h2>Dagger 2</h2>
 					<ul>
 						<li>è un framework basato sulla dependency injection</li>
-						<li>istanzia oggetti diversi tra release e test</li>
+						<li>facilita lo sviluppo in caso di testing</li>
+						<li>...e non solo</li>
+						<li>vediamo come...</li>
 					</ul>
 				</section>
 
 				<section>
 					<h3>Case study:</h3>
-					<p>Supponiamo di essere un locale che organizza concerti</p>
+					<p>Supponiamo di sviluppare un software che organizza concerti</p>
 					<p class="fragment">la prossima serata sarà dedicata ad un gruppo Rock</p>
 					<br>
 					<br>
-					<h4 class="fragment">Come fare?</h4>
+					<p class="fragment">Come fare?</p>
 
 				</section>
 
@@ -68,22 +71,86 @@
 				</section>
 
 				<section>
-					<pre><code class="hljs" data-trim contenteditable>
-		public class DepositoGiordani {
+					<h3>DepositoGiordani</h3>
+					<div class="left">
+						<pre style="width: auto"><code class="hljs" data-trim>
+public class DepositoGiordani {
 
-		 private Band band;
+ private Band band;
 
-		 public DepositoGiordani(){
-		  this.band = new Band();
-		 }
+ public DepositoGiordani(){
+  this.band = new Band();
+ }
 
-		 public void claimRockBand(){
-		  band.playSomething();
-		 }
-		}
-					</code></pre>
+ public void claimRockBand(){
+  band.playSomething();
+ }
+}
+						</code></pre>
+					</div>
+
+					<div class="left">
+						<ul>
+							<li>il Deposito ha bisogno di una Band</li>
+							<li>usa il suo costruttore per istanziarla</li>
+						</ul>
+					</div>
 				</section>
 
+				<section>
+				<section>
+					<h3>Band</h3>
+						<div class="left">
+						<pre><code class="hljs" data-trim >
+public class Band {
+
+ private RockerGuitarist guitarPlayer;
+ private Singer singer;
+ private RockerDrummer drummer;
+
+ public Band() {
+  this.guitarPlayer = new RockerGuitarist();
+  this.singer = new Singer();
+  singer.setVoiceDecibel(70);
+  this.drummer = new RockerDrummer();
+ }
+
+ public void playSomething(){
+  ...
+  }
+}
+						</code></pre>
+					</div>
+					<div class="left">
+						<ul>
+							<li>anche la Band dipende dai suoi musicisti</li>
+							<li>..come i musicisti con gli strumenti</li>
+						</ul>
+					</div>
+
+				</section>
+				<section data-transition="zoom">
+					<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
+				</section>
+				</section>
+
+				<section>
+					<h3>Diamo un'occhiata al Main</h3>
+					<pre><code>
+public class Main {
+
+ public static void main(String[] args) {
+
+  DepositoGiordani depositoGiordani;
+
+  depositoGiordani = new DepositoGiordani();
+
+  depositoGiordani.claimRockBand();
+
+ }
+}
+					</code></pre>
+				</section>
 			</div>
 		</div>
 

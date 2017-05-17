@@ -1,75 +1,70 @@
-/*
+/* Ocean Dark Theme */
+/* https://github.com/gavsiu */
+/* Original theme - https://github.com/chriskempson/base16 */
 
-Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
-based on dark.css by Ivan Sagalaev
+/* Ocean Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #65737e;
+}
 
-*/
+/* Ocean Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #bf616a;
+}
+
+/* Ocean Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #d08770;
+}
+
+/* Ocean Yellow */
+.hljs-attribute {
+  color: #ebcb8b;
+}
+
+/* Ocean Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #a3be8c;
+}
+
+/* Ocean Blue */
+.hljs-title,
+.hljs-section {
+  color: #8fa1b3;
+}
+
+/* Ocean Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #b48ead;
+}
 
 .hljs {
   display: block;
   overflow-x: auto;
+  background: #2b303b;
+  color: #c0c5ce;
   padding: 0.5em;
-  background: #3f3f3f;
-  color: #dcdcdc;
+  font-size: xx-small;
 }
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-tag {
-  color: #e3ceab;
-}
-
-.hljs-template-tag {
-  color: #dcdcdc;
-}
-
-.hljs-number {
-  color: #8cd0d3;
-}
-
-.hljs-variable,
-.hljs-template-variable,
-.hljs-attribute {
-  color: #efdcbc;
-}
-
-.hljs-literal {
-  color: #efefaf;
-}
-
-.hljs-subst {
-  color: #8f8f8f;
-}
-
-.hljs-title,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-section,
-.hljs-type {
-  color: #efef8f;
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link {
-  color: #dca3a3;
-}
-
-.hljs-deletion,
-.hljs-string,
-.hljs-built_in,
-.hljs-builtin-name {
-  color: #cc9393;
-}
-
-.hljs-addition,
-.hljs-comment,
-.hljs-quote,
-.hljs-meta {
-  color: #7f9f7f;
-}
-
 
 .hljs-emphasis {
   font-style: italic;
