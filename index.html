@@ -79,13 +79,13 @@
 				<section>
 					<h3>DepositoGiordani</h3>
 
-						<pre style="width: auto"><code class="hljs" data-trim>
+						<pre style="width: auto"><code class="hljs" data-trim data-noescape>
 public class DepositoGiordani {
 
  private Band band;
 
  public DepositoGiordani(){
-  this.band = new Band();
+  <mark>this.band = new Band();</mark>
  }
 
  public void claimRockBand(){
@@ -104,7 +104,7 @@ public class DepositoGiordani {
 				<section>
 					<h3>Band</h3>
 
-						<pre style="width: auto"><code class="hljs" data-trim>
+						<pre style="width: auto"><code class="hljs" data-trim data-noescape>
 public class Band {
 
  private RockerGuitarist guitarPlayer;
@@ -112,10 +112,10 @@ public class Band {
  private RockerDrummer drummer;
 
  public Band() {
-  this.guitarPlayer = new RockerGuitarist();
-  this.singer = new Singer();
-  singer.setVoiceDecibel(70);
-  this.drummer = new RockerDrummer();
+  <mark>this.guitarPlayer = new RockerGuitarist();</mark>
+  <mark>this.singer = new Singer();</mark>
+  <mark>singer.setVoiceDecibel(70);</mark>
+  <mark>this.drummer = new RockerDrummer();</mark>
  }
 
  public void playSomething(){
@@ -155,14 +155,112 @@ public class Main {
 
 				<section>
 					<ul>
-						<li>a causa delle dipendenze non è possibile isolare le classi
+						<li>A causa delle dipendenze non è possibile isolare le classi
 						<p class="fragment highlight-red">Non è testabile</p></li>
 
-						<li>e se il prossimo concerto fosse di un gruppo Pop?
+						<li>E se il prossimo concerto fosse di un gruppo Pop?
 						<p class="fragment highlight-red">Non è riutilizzabile</p></li>
 					</ul>
 				</section>
 
+                <section>
+
+                    <section>
+                        <h5>come migliorare la situazione</h5>
+                        <img class="stretch" src="reveal.js-3.5.0/rsc/v2_abstractions.jpg">
+                    </section>
+                    <section>
+                        <p>Aumentando il livello di astrazione, e un corretto uso dei costruttori adesso il DepositoGiordani può decidere se chiamare un gruppo Rock o un gruppo Pop</p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h4>Band</h4>
+                    <pre><code data-trim data-noescape>
+public class Band {
+
+ private Guitarist guitarPlayer;
+ private Singer singer;
+ private Drummer drummer;
+
+public Band(<mark>Guitarist guitarist, Singer singer, Drummer drummer</mark>) {
+ this.guitarPlayer = guitarist;
+ this.singer = singer;
+ this.drummer = drummer;
+}
+
+public void playSomething(boolean isRock) {
+ ...
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4>Main</h4>
+                    <pre class="stretch"><code data-trim data-noescape>
+public class Main {
+
+ public static void main(String[] args) {
+
+ DepositoGiordani depositoGiordani;
+
+ Singer singer = new Singer();
+ singer.setDecibel(75);
+
+ <mark>Drummer drummer = new PopDrummer(new Drums());</mark>
+
+ <mark>Guitarist guitarist = new PopGuitarist(new AcusticGuitar());</mark>
+
+ Band band = new Band(guitarist, singer, drummer);
+
+ depositoGiordani = new DepositoGiordani(band);
+
+ depositoGiordani.hiresPopBand();
+
+ }
+}
+                    </code></pre>
+                    <p class="fragment fade-right">E il test?</p>
+                </section>
+
+                <section>
+                    <h4>Unit Test</h4>
+                    <pre class="stretch"><code data-trim data-noescape>
+public class BandTest {
+ Band band;
+ PopGuitarist guitarist;
+ PopDrummer drummer;
+ Singer singer;
+ AcusticGuitar guitar;
+ Drums drums;
+@Before
+public void setUp(){
+ band = Mockito.mock(Band.class);
+ guitarist = Mockito.mock(PopGuitarist.class);
+ drummer = Mockito.mock(PopDrummer.class);
+ singer = Mockito.mock(Singer.class);
+ guitar = Mockito.mock(AcusticGuitar.class);
+ drums = Mockito.mock(Drums.class);
+}
+@Test
+public void testPlaySomething() throws Exception {
+ when(singer.singingSomething(false)).thenReturn("I'm Madonnan\n");
+ when(band.playSomething(true)).thenReturn(contains("Axl"));
+ when(drums.letsBeat(true)).thenReturn(contains("Rock"));
+ }
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Per astrazione, usando le interfacce ora <span class="fragment highlight-blue">è testabile</span></li>
+                        <li>Il codice <span class="fragment highlight-blue">è riutilizzabile</span></li>
+                        <br>
+                        <li>La <span class="fragment highlight-red">complessità</span> di realizzazione degli oggetti è però aumentata</li>
+                    </ul>
+                </section>
 			</div>
 		</div>
 
