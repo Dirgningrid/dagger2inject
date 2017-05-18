@@ -13,7 +13,7 @@ public class DepositoGiordani {
         band.playSomething(true);
     }
 
-    public void hiresPopBand(){
-        band.playSomething(false);
+    public String hiresPopBand(){
+        return band.playSomething(false);
     }
 }

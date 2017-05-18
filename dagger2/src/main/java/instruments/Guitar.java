@@ -4,5 +4,5 @@ package instruments;
  * Created by ingrid on 14/05/17.
  */
 public interface Guitar {
-    void choose();
+    String chooses();
 }

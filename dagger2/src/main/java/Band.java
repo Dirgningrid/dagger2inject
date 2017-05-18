@@ -19,18 +19,12 @@ public class Band {
         this.drummer = drummer;
     }
 
-    public void playSomething(boolean isRock) {
+    public String playSomething(boolean isRock) {
 
-        if (guitarPlayer != null) {
-            guitarPlayer.playGuitar();
-        }
+        String guitarSound = guitarPlayer.playGuitar();
+        String drummerBeat = drummer.letsGetBeat();
+        String song = singer.singingSomething(isRock);
 
-        if (singer != null) {
-            singer.singingSomething(isRock);
-        }
-
-        if (drummer != null) {
-            drummer.letsGetBeat(8, 2);
-        }
+        return song + guitarSound + drummerBeat;
     }
 }

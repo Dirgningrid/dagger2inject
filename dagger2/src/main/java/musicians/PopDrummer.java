@@ -11,13 +11,13 @@ public class PopDrummer implements Drummer {
 
     public PopDrummer(Drums drums){
         this.drums = drums;
+        drums.setNumBass(1);
+        drums.setNumPlates(5);
     }
 
 
     @Override
-    public void letsGetBeat(int plates, int basses) {
-        drums.setNumBass(basses);
-        drums.setNumPlates(plates);
-        drums.letsBeat(false);
+    public String letsGetBeat() {
+        return drums.letsBeat(false);
     }
 }

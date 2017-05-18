@@ -6,10 +6,10 @@ package instruments;
 
 public class ElectricGuitar implements Guitar {
 
-    private String gunsNRoses = "November Rain";
+    private String gunsNRoses = "November Rain\n";
 
     @Override
-    public void choose() {
-        System.out.println(gunsNRoses);
+    public String chooses() {
+        return gunsNRoses;
     }
 }

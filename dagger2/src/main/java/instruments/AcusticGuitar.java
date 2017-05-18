@@ -5,10 +5,10 @@ package instruments;
  */
 public class AcusticGuitar implements Guitar {
 
-    private String madonna = "Hung up!";
+    private String madonna = "Hung up!\n";
 
     @Override
-    public void choose() {
-        System.out.println(madonna);
+    public String chooses() {
+        return madonna;
     }
 }

@@ -23,7 +23,9 @@ public class Main {
 
         depositoGiordani = new DepositoGiordani(band);
 
-        depositoGiordani.hiresPopBand();
+        String show = depositoGiordani.hiresPopBand();
+
+        System.out.println(show);
 
     }
 }

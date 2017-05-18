@@ -7,6 +7,6 @@ import instruments.Drums;
  */
 public interface Drummer {
     
-    void letsGetBeat(int plates, int basses);
+    String letsGetBeat();
     
 }

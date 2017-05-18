@@ -11,12 +11,12 @@ public class RockerDrummer implements Drummer{
 
     public RockerDrummer(Drums drums){
         this.drums = drums;
+        drums.setNumBass(2);
+        drums.setNumPlates(8);
     }
 
     @Override
-    public void letsGetBeat(int plates, int basses) {
-        drums.setNumBass(basses);
-        drums.setNumPlates(plates);
-        drums.letsBeat(true);
+    public String letsGetBeat() {
+        return drums.letsBeat(true);
     }
 }

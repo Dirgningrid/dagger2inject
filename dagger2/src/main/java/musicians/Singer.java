@@ -7,17 +7,18 @@ package musicians;
 public class Singer {
 
     private long decibel;
+    private String ROCK = "I'm Axl Rose\n";
+    private String POP = "I'm Madonnan\n";
 
     public void setDecibel(long decibel) {
         this.decibel = decibel;
     }
 
-    public void singingSomething(boolean isRock){
+    public String singingSomething(boolean isRock){
         if(isRock){
-            System.out.println("I'm Axl Rose");
+            return ROCK;
         } else {
-            System.out.println("I'm Madonna");
+            return POP;
         }
     }
-
 }
