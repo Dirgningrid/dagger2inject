@@ -21,7 +21,7 @@ public class Main {
 
         Band band = new Band(guitarist, singer, drummer);
 
-        depositoGiordani = new DepositoGiordani();
+        depositoGiordani = new DepositoGiordani(band);
 
         depositoGiordani.hiresRockBand();
 

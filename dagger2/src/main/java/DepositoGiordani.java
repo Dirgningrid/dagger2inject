@@ -5,8 +5,8 @@ public class DepositoGiordani {
 
     private Band band;
 
-    public DepositoGiordani(){
-        this.band = new Band();
+    public DepositoGiordani(Band band){
+        this.band = band;
     }
 
     public void hiresRockBand(){
