@@ -8,7 +8,7 @@ public class Singer {
 
     private long decibel;
     private String ROCK = "I'm Axl Rose\n";
-    private String POP = "I'm Madonnan\n";
+    private String POP = "I'm Madonna\n";
 
     public void setDecibel(long decibel) {
         this.decibel = decibel;
