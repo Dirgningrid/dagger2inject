@@ -1,7 +1,7 @@
-package musicians;
+package didag2.example.musicians;
 
-import instruments.AcusticGuitar;
-import instruments.Guitar;
+import didag2.example.instruments.AcusticGuitar;
+import didag2.example.instruments.Guitar;
 
 /**
  * Created by ingrid on 14/05/17.

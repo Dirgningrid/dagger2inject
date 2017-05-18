@@ -1,6 +1,8 @@
-import instruments.AcusticGuitar;
-import instruments.Drums;
-import instruments.ElectricGuitar;
+package didag2.example;
+
+import didag2.example.instruments.AcusticGuitar;
+import didag2.example.instruments.Drums;
+import didag2.example.musicians.*;
 import musicians.*;
 
 /**

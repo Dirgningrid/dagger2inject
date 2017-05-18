@@ -1,3 +1,5 @@
+package didag2.example;
+
 /**
  * Created by ingrid on 17/05/17.
  */

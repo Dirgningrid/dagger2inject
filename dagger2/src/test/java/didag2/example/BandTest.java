@@ -1,6 +1,9 @@
-import musicians.PopDrummer;
-import musicians.PopGuitarist;
-import musicians.Singer;
+package didag2.example;
+
+import didag2.example.Band;
+import didag2.example.musicians.PopDrummer;
+import didag2.example.musicians.PopGuitarist;
+import didag2.example.musicians.Singer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
