@@ -6,10 +6,17 @@ import didag2.example.musicians.Singer;
 
 import javax.inject.Inject;
 
+import didag2.example.musicians.Drummer;
+import didag2.example.musicians.Singer;
+
 /**
  * Created by ingrid on 14/05/17.
  */
 public class Band {
+<<<<<<< HEAD
+=======
+
+>>>>>>> v2_nicer_code
     private Guitarist guitarPlayer;
     private Singer singer;
     private Drummer drummer;
@@ -21,25 +28,12 @@ public class Band {
         this.drummer = drummer;
     }
 
-    public String playSomething(){
+    public String playSomething(boolean isRock) {
 
-        String specialSong = "";
+        String guitarSound = guitarPlayer.playGuitar();
+        String drummerBeat = drummer.letsGetBeat();
+        String song = singer.singingSomething(isRock);
 
-        if(guitarPlayer != null){
-            specialSong += guitarPlayer.playGuitar();
-        }
-
-        if(singer != null){
-            specialSong += "\n";
-            specialSong += singer.singingSomething();
-        }
-
-        if(drummer != null){
-            specialSong += "\n";
-            specialSong += drummer.letsGetBeat(8, 2);
-        }
-
-        return specialSong;
+        return song + guitarSound + drummerBeat;
     }
-
 }

@@ -1,8 +1,8 @@
-package didag2.example.instruments;
+package instruments;
 
 /**
  * Created by ingrid on 14/05/17.
  */
 public interface Guitar {
-    String choose();
+    String chooses();
 }
