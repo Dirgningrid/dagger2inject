@@ -9,7 +9,7 @@ public class Main {
 
         depositoGiordani = new DepositoGiordani();
 
-        depositoGiordani.claimRockBand();
+        depositoGiordani.hiresRockBand();
 
     }
 }

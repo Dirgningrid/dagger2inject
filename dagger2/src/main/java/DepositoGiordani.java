@@ -9,7 +9,7 @@ public class DepositoGiordani {
         this.band = new Band();
     }
 
-    public void claimRockBand(){
+    public void hiresRockBand(){
         band.playSomething();
     }
 }
