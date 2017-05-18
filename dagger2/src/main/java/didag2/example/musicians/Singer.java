@@ -7,12 +7,18 @@ package didag2.example.musicians;
 public class Singer {
 
     private long decibel;
+    private String ROCK = "I'm Axl Rose\n";
+    private String POP = "I'm Madonna\n";
 
     public void setDecibel(long decibel) {
         this.decibel = decibel;
     }
 
-    public String singingSomething(){
-        return "I'm Axl Rose";
+    public String singingSomething(boolean isRock){
+        if(isRock){
+            return ROCK;
+        } else {
+            return POP;
+        }
     }
 }

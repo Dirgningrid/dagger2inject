@@ -13,10 +13,7 @@ import didag2.example.musicians.Singer;
  * Created by ingrid on 14/05/17.
  */
 public class Band {
-<<<<<<< HEAD
-=======
 
->>>>>>> v2_nicer_code
     private Guitarist guitarPlayer;
     private Singer singer;
     private Drummer drummer;
