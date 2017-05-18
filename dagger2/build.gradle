@@ -3,19 +3,14 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
-
-final DAGGER_VERSION = '2.8'
-
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-
-
-    compile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    compile 'com.google.dagger:dagger-compiler:${DAGGER_VERSION};jar-with-dependencies'
+    testCompile "org.mockito:mockito-core:1.+"
 }
