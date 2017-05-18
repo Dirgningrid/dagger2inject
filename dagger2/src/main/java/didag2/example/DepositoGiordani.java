@@ -7,17 +7,13 @@ import javax.inject.Inject;
  */
 public class DepositoGiordani {
 
+    private Band band;
+
     @Inject
     public DepositoGiordani(Band band) {
         //todo
-        System.out.println(band.playSomething());
+        System.out.println(band.playSomething(false));
 
-    }
-
-    private Band band;
-
-    public DepositoGiordani(Band band){
-        this.band = band;
     }
 
     public void hiresRockBand(){

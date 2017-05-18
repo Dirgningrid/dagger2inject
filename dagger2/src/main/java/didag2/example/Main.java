@@ -3,9 +3,7 @@ package didag2.example;
 import didag2.example.dagger.BandComponent;
 import didag2.example.dagger.DaggerBandComponent;
 import didag2.example.instruments.AcusticGuitar;
-import didag2.example.instruments.Drums;
 import didag2.example.musicians.*;
-import musicians.*;
 
 /**
  * Created by ingrid on 14/05/17.
