@@ -5,10 +5,10 @@ import javax.inject.Inject;
 /**
  * Created by ingrid on 17/05/17.
  */
-public class RockTown {
+public class DepositoGiordani {
 
     @Inject
-    public RockTown(Band band) {
+    public DepositoGiordani(Band band) {
         //todo
         System.out.println(band.playSomething());
 

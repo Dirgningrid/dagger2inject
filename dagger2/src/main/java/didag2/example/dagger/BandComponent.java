@@ -2,8 +2,7 @@ package didag2.example.dagger;
 
 import dagger.Component;
 import didag2.example.Band;
-import didag2.example.Main;
-import didag2.example.RockTown;
+import didag2.example.DepositoGiordani;
 
 /**
  * Created by ingrid on 16/05/17.
@@ -14,5 +13,5 @@ public interface BandComponent {
 
     Band injectBand();
 
-    RockTown injectRockTown();
+    DepositoGiordani injectRockTown();
 }
