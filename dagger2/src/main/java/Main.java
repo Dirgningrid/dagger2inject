@@ -10,18 +10,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Band band;
+        DepositoGiordani depositoGiordani;
 
         Singer singer = new Singer();
         singer.setDecibel(75);
 
-        Guitarist guitarist = new Rocker(new ElectricGuitar());
+        Guitarist guitarist = new RockerGuitarist(new ElectricGuitar());
 
-        Drummer drummer = new Rocker(new Drums());
+        Drummer drummer = new RockerDrummer(new Drums());
 
-        band = new Band(guitarist, singer, drummer);
+        Band band = new Band(guitarist, singer, drummer);
 
-        band.playSomething();
+        depositoGiordani = new DepositoGiordani();
+
+        depositoGiordani.hiresRockBand();
 
     }
 }

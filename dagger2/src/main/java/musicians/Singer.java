@@ -1,7 +1,5 @@
 package musicians;
 
-import dagger.Module;
-
 /**
  * Created by ingrid on 14/05/17.
  */
@@ -17,4 +15,5 @@ public class Singer {
     public void singingSomething(){
         System.out.println("I'm Axl Rose");
     }
+
 }
