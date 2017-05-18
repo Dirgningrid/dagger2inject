@@ -33,22 +33,28 @@
 				</section>
 
 				<section>
-					<h2>Dagger 2</h2>
-					<ul>
-						<li>è un framework basato sulla dependency injection</li>
-						<li>facilita lo sviluppo in caso di testing</li>
-						<li>...e non solo</li>
-						<li>vediamo come...</li>
-					</ul>
+					<section>
+						<h2>Dependency Injection</h2>
+						<img width="700" height="496" src="reveal.js-3.5.0/rsc/what-is-dependency-injection.jpg" />
+					</section>
+					<section>
+						<h2>Dagger 2</h2>
+						<ul>
+							<li>è un framework basato sulla dependency injection</li>
+							<li>facilita lo sviluppo in caso di Unit Test</li>
+							<li>disaccoppia le classi legate tra loro da una relazione</li>
+							<li>aumenta la riutilizzabilità del codice</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
 					<h3>Case study:</h3>
-					<p>Supponiamo di sviluppare un software che organizza concerti</p>
-					<p class="fragment">la prossima serata sarà dedicata ad un gruppo Rock</p>
+					<p>Supponiamo di sviluppare un'applicazione che gestisce eventi musicali</p>
+					<p class="fragment fade-up">la prima serata sarà dedicata ad un gruppo Rock</p>
 					<br>
 					<br>
-					<p class="fragment">Come fare?</p>
+					<p class="fragment fade-up">Come fareste?</p>
 
 				</section>
 
@@ -90,10 +96,7 @@ public class DepositoGiordani {
 
 
 					<div class="left">
-						<ul>
-							<li>il DepositoGiordani ha bisogno di una Band</li>
-							<li>usa il suo costruttore per istanziarla</li>
-						</ul>
+						il DepositoGiordani crea la Band dal suo costruttore
 					</div>
 				</section>
 
@@ -122,10 +125,7 @@ public class Band {
 						</code></pre>
 
 					<div class="left">
-						<ul>
-							<li>anche la Band dipende dai suoi musicisti</li>
-							<li>..come i musicisti con gli strumenti</li>
-						</ul>
+						anche la Band dipende dai suoi musicisti, come i musicisti dagli strumenti
 					</div>
 
 				</section>
@@ -155,10 +155,10 @@ public class Main {
 
 				<section>
 					<ul>
-						<li>fare di ogni oggetto un mock?
+						<li>a causa delle dipendenze non è possibile isolare le classi
 						<p class="fragment highlight-red">Non è testabile</p></li>
 
-						<li>e se la band fosse solo composta da un cantante e un chitarrista?
+						<li>e se il prossimo concerto fosse di un gruppo Pop?
 						<p class="fragment highlight-red">Non è riutilizzabile</p></li>
 					</ul>
 				</section>
