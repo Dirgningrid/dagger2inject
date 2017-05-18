@@ -12,8 +12,12 @@ public class Singer {
         this.decibel = decibel;
     }
 
-    public void singingSomething(){
-        System.out.println("I'm Axl Rose");
+    public void singingSomething(boolean isRock){
+        if(isRock){
+            System.out.println("I'm Axl Rose");
+        } else {
+            System.out.println("I'm Madonna");
+        }
     }
 
 }

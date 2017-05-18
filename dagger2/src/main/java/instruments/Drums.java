@@ -7,6 +7,7 @@ public class Drums {
 
     private int numPlates;
     private int numBass;
+    private boolean isRock = true;
 
     public int getNumPlates() {
         return numPlates;
@@ -24,7 +25,12 @@ public class Drums {
         this.numBass = numBass;
     }
 
-    public void letsBeat(){
-        System.out.println("Let's Rock!");
+    public void letsBeat(boolean isRock){
+        if(isRock){
+            System.out.println("Let's Rock!");
+        } else {
+            System.out.println("Let's Pop!");
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-import instruments.ClassicalGuitar;
+import instruments.AcusticGuitar;
 import instruments.Drums;
 import instruments.ElectricGuitar;
 import musicians.*;
@@ -15,15 +15,15 @@ public class Main {
         Singer singer = new Singer();
         singer.setDecibel(75);
 
-        Guitarist guitarist = new RockerGuitarist(new ElectricGuitar());
+        Drummer drummer = new PopDrummer(new Drums());
 
-        Drummer drummer = new RockerDrummer(new Drums());
+        Guitarist guitarist = new PopGuitarist(new AcusticGuitar());
 
         Band band = new Band(guitarist, singer, drummer);
 
         depositoGiordani = new DepositoGiordani(band);
 
-        depositoGiordani.hiresRockBand();
+        depositoGiordani.hiresPopBand();
 
     }
 }

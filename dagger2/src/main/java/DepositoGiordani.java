@@ -10,6 +10,10 @@ public class DepositoGiordani {
     }
 
     public void hiresRockBand(){
-        band.playSomething();
+        band.playSomething(true);
+    }
+
+    public void hiresPopBand(){
+        band.playSomething(false);
     }
 }

@@ -19,14 +19,14 @@ public class Band {
         this.drummer = drummer;
     }
 
-    public void playSomething() {
+    public void playSomething(boolean isRock) {
 
         if (guitarPlayer != null) {
             guitarPlayer.playGuitar();
         }
 
         if (singer != null) {
-            singer.singingSomething();
+            singer.singingSomething(isRock);
         }
 
         if (drummer != null) {
