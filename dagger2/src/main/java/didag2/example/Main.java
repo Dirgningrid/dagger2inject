@@ -1,9 +1,9 @@
 package didag2.example;
 
-import didag2.example.dagger.BandComponent;
-import didag2.example.dagger.DaggerBandComponent;
-import didag2.example.instruments.AcusticGuitar;
-import didag2.example.musicians.*;
+import didag2.example.dagger.DaggerPopBandComponent;
+import didag2.example.dagger.DaggerRockBandComponent;
+import didag2.example.dagger.PopBandComponent;
+import didag2.example.dagger.RockBandComponent;
 
 /**
  * Created by ingrid on 14/05/17.
@@ -13,18 +13,28 @@ public class Main {
     public static void main(String[] args) {
 
         String weWillRockYou;
+        String weWillPopYou;
 
-        BandComponent component =
-                DaggerBandComponent
+        RockBandComponent rockComponent =
+                DaggerRockBandComponent
                 .builder()
                 .build();
 
-        //Band band = component.injectBand();
-        //weWillRockYou = band.playSomething();
+        PopBandComponent popComponent =
+                DaggerPopBandComponent
+                .builder()
+                .build();
 
-        //System.out.println(weWillRockYou);
+        DepositoGiordani rock = rockComponent.injectDeposito();
 
-        DepositoGiordani rt = component.injectRockTown();
+        weWillRockYou = rock.hiresRockBand();
+        System.out.println(weWillRockYou);
+
+
+        DepositoGiordani pop = popComponent.injectDeposito();
+
+        weWillPopYou = pop.hiresPopBand();
+        System.out.println(weWillPopYou);
 
 
     }

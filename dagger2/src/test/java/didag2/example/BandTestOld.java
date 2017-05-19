@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by ingrid on 18/05/17.
  */
-public class BandTest {
+public class BandTestOld {
 
     PopGuitarist guitarist;
     PopDrummer drummer;

@@ -5,7 +5,7 @@ package didag2.example.instruments;
  */
 public class ElectricGuitar implements Guitar {
 
-    private String gunsNRoses = "November Rain";
+    private String gunsNRoses = "November Rain\n";
 
     @Override
     public String chooses() {

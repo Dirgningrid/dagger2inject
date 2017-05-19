@@ -8,8 +8,9 @@ import didag2.example.Band;
  */
 
 @Component(modules = {BandMock.class, InstrumentMock.class})
-public interface BandComponentTest extends BandComponent {
+public interface RockBandComponentTest extends RockBandComponent {
 
     public Band injectMockBand();
+
 
 }

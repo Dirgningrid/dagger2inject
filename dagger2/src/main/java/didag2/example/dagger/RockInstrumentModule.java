@@ -2,6 +2,7 @@ package didag2.example.dagger;
 
 import dagger.Module;
 import dagger.Provides;
+import didag2.example.instruments.AcusticGuitar;
 import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
 import didag2.example.instruments.Guitar;
@@ -11,7 +12,7 @@ import didag2.example.instruments.Guitar;
  */
 
 @Module
-public class InstrumentModule {
+public class RockInstrumentModule {
 
     //nb : non puoi fare @Inject o @Provides di interfacce
     @Provides
@@ -22,5 +23,10 @@ public class InstrumentModule {
     @Provides
     public Drums providesDrums(){
         return new Drums();
+    }
+
+    @Provides
+    public AcusticGuitar providesAcusticGuitar(){
+        return new AcusticGuitar();
     }
 }

@@ -8,10 +8,10 @@ import didag2.example.DepositoGiordani;
  * Created by ingrid on 16/05/17.
  */
 
-@Component(modules = {BandModule.class, InstrumentModule.class} )
-public interface BandComponent {
+@Component(modules = {RockBandModule.class, RockInstrumentModule.class} )
+public interface RockBandComponent {
 
     Band injectBand();
 
-    DepositoGiordani injectRockTown();
+    DepositoGiordani injectDeposito();
 }

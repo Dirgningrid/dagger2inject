@@ -11,13 +11,11 @@ public class DepositoGiordani {
 
     @Inject
     public DepositoGiordani(Band band) {
-        //todo
-        System.out.println(band.playSomething(false));
-
+        this.band = band;
     }
 
-    public void hiresRockBand(){
-        band.playSomething(true);
+    public String hiresRockBand(){
+        return band.playSomething(true);
     }
 
     public String hiresPopBand(){

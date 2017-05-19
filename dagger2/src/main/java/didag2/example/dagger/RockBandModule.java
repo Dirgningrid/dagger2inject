@@ -3,6 +3,7 @@ package didag2.example.dagger;
 import didag2.example.Band;
 import dagger.Module;
 import dagger.Provides;
+import didag2.example.instruments.AcusticGuitar;
 import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
 import didag2.example.musicians.*;
@@ -12,7 +13,7 @@ import didag2.example.musicians.*;
  */
 
 @Module
-public class BandModule {
+public class RockBandModule {
 
     @Provides
     public Guitarist providesGuitarist(ElectricGuitar guitar){
@@ -20,12 +21,13 @@ public class BandModule {
     }
 
     @Provides
+    public Drummer providesDrummer(Drums drums){
+        return new RockerDrummer(drums);
+    }
+
+    @Provides
     public Singer providesSinger(){
         return new Singer();
     }
 
-    @Provides
-    public Drummer providesDrummer(Drums drums){
-        return new RockerDrummer(drums);
-    }
 }
