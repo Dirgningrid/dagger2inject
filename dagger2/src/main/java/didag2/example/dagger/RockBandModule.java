@@ -8,6 +8,8 @@ import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
 import didag2.example.musicians.*;
 
+import javax.inject.Singleton;
+
 /**
  * Created by ingrid on 16/05/17.
  */
@@ -26,6 +28,7 @@ public class RockBandModule {
     }
 
     @Provides
+    @Singleton
     public Singer providesSinger(){
         return new Singer();
     }

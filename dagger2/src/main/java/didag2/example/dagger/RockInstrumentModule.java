@@ -7,6 +7,8 @@ import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
 import didag2.example.instruments.Guitar;
 
+import javax.inject.Singleton;
+
 /**
  * Created by ingrid on 16/05/17.
  */
@@ -14,7 +16,6 @@ import didag2.example.instruments.Guitar;
 @Module
 public class RockInstrumentModule {
 
-    //nb : non puoi fare @Inject o @Provides di interfacce
     @Provides
     public ElectricGuitar providesGuitar(){
         return new ElectricGuitar();

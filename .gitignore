@@ -1,6 +1,8 @@
-.reveal.js-3.5.0/
-.gradle
-build/
+#reveal.js-3.5.0/
+dagger2/.gradle
+dagger2/build/
+dagger2/.idea/
+
 .idea/
 
 # Ignore Gradle GUI config
@@ -8,6 +10,7 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+dagger2inject.iml
 
 # Cache of project
 .gradletasknamecache

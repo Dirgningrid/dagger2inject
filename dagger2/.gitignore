@@ -1,7 +1,7 @@
 .gradle
-.idea/
+dagger2/.idea/
 .DS_Store
-build/
+dagger2/build/
 autogenerate/
 
 

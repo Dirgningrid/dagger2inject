@@ -8,21 +8,25 @@ import didag2.example.instruments.ElectricGuitar;
 import didag2.example.musicians.*;
 import org.mockito.Mockito;
 
+import static org.mockito.Mockito.when;
+
 /**
  * Created by ingrid on 16/05/17.
  */
 
 @Module
-public class BandMock {
+public class BandMockModule {
 
     @Provides
-    public Band providesMockBand(Guitarist guitarist, Singer singer, Drummer drummer){
-        return Mockito.mock(Band.class);
+    public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
+        return new Band(guitarist, singer, drummer);
     }
 
     @Provides
     public Guitarist providesGuitarist(ElectricGuitar guitar){
-        return Mockito.mock(RockerGuitarist.class);
+        Guitarist m = Mockito.mock(Guitarist.class);
+        when(m.playGuitar()).thenReturn("A");
+        return m;
     }
 
     @Provides
@@ -32,6 +36,6 @@ public class BandMock {
 
     @Provides
     public Drummer providesDrummer(Drums drums){
-        return Mockito.mock(RockerDrummer.class);
+        return Mockito.mock(Drummer.class);
     }
 }

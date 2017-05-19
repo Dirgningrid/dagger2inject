@@ -1,6 +1,9 @@
 package didag2.example;
 
 import didag2.example.Band;
+import didag2.example.dagger.DaggerRockBandComponent;
+import didag2.example.dagger.RockBandComponent;
+import didag2.example.dagger.RockBandComponentTest;
 import didag2.example.musicians.PopDrummer;
 import didag2.example.musicians.PopGuitarist;
 import didag2.example.musicians.Singer;
@@ -16,26 +19,19 @@ import static org.mockito.Mockito.when;
  */
 public class BandTestOld {
 
-    PopGuitarist guitarist;
-    PopDrummer drummer;
-    Singer singer;
-
     @Before
     public void setUp(){
-        guitarist = Mockito.mock(PopGuitarist.class);
-        drummer = Mockito.mock(PopDrummer.class);
-        singer = Mockito.mock(Singer.class);
     }
 
     @Test
     public void testPlaySomething() throws Exception {
 
-        Band band = new Band(guitarist, singer, drummer);
-
-        when(guitarist.playGuitar()).thenReturn("B");
-        when(singer.singingSomething(true)).thenReturn("A");
-        when(drummer.letsGetBeat()).thenReturn("C");
-
-        assertEquals("ABC", band.playSomething(true));
+//        BandComponentTest component =
+//                DaggerBandComponentTest
+//                        .builder()
+//                        .build();
+//
+//        Band band = component.injectBand();
+//        assertThat();
     }
 }
