@@ -1,334 +1,462 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<meta autor="Ingrid" content="Dirgningrid" />
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta autor="Ingrid" content="Dirgningrid" />
 
-		<title>Dependency Injection and Dagger2</title>
+	<title>Dependency Injection and Dagger2</title>
 
-		<link rel="stylesheet" href="reveal.js-3.5.0/css/reveal.css">
-		<link rel="stylesheet" href="reveal.js-3.5.0/css/theme/solarized.css">
+	<link rel="stylesheet" href="reveal.js-3.5.0/css/reveal.css">
+	<link rel="stylesheet" href="reveal.js-3.5.0/css/theme/solarized.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="reveal.js-3.5.0/lib/css/zenburn.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="reveal.js-3.5.0/lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.5.0/css/print/pdf.css' : 'reveal.js-3.5.0/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.5.0/css/print/pdf.css' : 'reveal.js-3.5.0/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
 
-		<link rel="stylesheet" href="reveal.js-3.5.0/css/mystyle.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>Dagger 2</h1>
-					<h2 class="fragment">e dependency injection</h2>
-				</section>
+	<link rel="stylesheet" href="reveal.js-3.5.0/css/mystyle.css">
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<section>
+			<h1>Dagger 2</h1>
+			<h2 class="fragment">e dependency injection</h2>
+		</section>
 
-				<section>
-					<h2>Case study:</h2>
-					<p>Supponiamo di sviluppare un'applicazione che gestisce eventi musicali</p>
-					<p>la prima serata sarà dedicata ad un gruppo Rock</p>
-					<br>
-					<br>
-					<p class="fragment fade-up">Come fareste?</p>
+		<section>
+			<h2>Case study:</h2>
+			<p>Supponiamo di sviluppare un'applicazione che gestisce eventi musicali</p>
+			<p>la prima serata sarà dedicata ad un gruppo Rock</p>
+			<br>
+			<br>
+			<p class="fragment fade-up">Come fareste?</p>
 
-				</section>
+		</section>
 
-				<section>
-					<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
-				</section>
+		<section>
+			<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
+		</section>
 
-				<section>
-				<section>
-					<h3>DepositoGiordani</h3>
+		<section>
+			<section>
+				<h3>DepositoGiordani</h3>
 
 					<pre style="width: auto"><code class="hljs" data-trim data-noescape>
-public class DepositoGiordani {
+						public class DepositoGiordani {
 
- private Band band;
+						private Band band;
 
- public DepositoGiordani(){
-  <span class="fragment highlight-green">this.band = new Band();</span>
- }
+						public DepositoGiordani(){
+						<span class="fragment highlight-green">this.band = new Band();</span>
+						}
 
- public void claimRockBand(){
- band.playSomething();
- }
-}
+						public void claimRockBand(){
+						band.playSomething();
+						}
+						}
 					</code></pre>
 
 
-					<div class="left">
-						il DepositoGiordani crea la Band dal suo costruttore
-					</div>
-				</section>
+				<div class="left">
+					il DepositoGiordani crea la Band dal suo costruttore
+				</div>
+			</section>
 
-				<section>
-					<h3>Band</h3>
+			<section>
+				<h3>Band</h3>
 
 						<pre style="width: auto"><code class="hljs" data-trim data-noescape=>
-public class Band {
+							public class Band {
 
- private RockerGuitarist guitarPlayer;
- private Singer singer;
- private RockerDrummer drummer;
+							private RockerGuitarist guitarPlayer;
+							private Singer singer;
+							private RockerDrummer drummer;
 
- public Band() {
+							public Band() {
   <span class="fragment highlight-green">this.guitarPlayer = new RockerGuitarist();
   this.singer = new Singer();
   singer.setVoiceDecibel(70);
   this.drummer = new RockerDrummer();</span>
- }
+							}
 
- public void playSomething(){
-	...
-  }
-}
+							public void playSomething(){
+							...
+							}
+							}
 						</code></pre>
 
-					<div class="left">
-						anche la Band dipende dai suoi musicisti, come i musicisti dagli strumenti
-					</div>
+				<div class="left">
+					anche la Band dipende dai suoi musicisti, come i musicisti dagli strumenti
+				</div>
 
-				</section>
-					<section>
-						<h5>Diamo un'occhiata al Main</h5>
+			</section>
+			<section>
+				<h5>Diamo un'occhiata al Main</h5>
 					<pre><code>
-public class Main {
+						public class Main {
 
-public static void main(String[] args) {
+						public static void main(String[] args) {
 
- DepositoGiordani deposito = new DepositoGiordani();
+						DepositoGiordani deposito = new DepositoGiordani();
 
- depositoGiordani.hiresRockBand();
+						depositoGiordani.hiresRockBand();
 
- }
-}
+						}
+						}
 					</code></pre>
-						<p class="fragment grow">Come fareste il test?</p>
-					</section>
-				</section>
+				<p class="fragment grow">Come fareste il test?</p>
+			</section>
+		</section>
 
-				<section>
-					<ul>
-						<li>A causa delle dipendenze non è possibile isolare le classi
-						<p class="fragment highlight-red">Non è testabile</p></li>
+		<section>
+			<ul>
+				<li>A causa delle dipendenze non è possibile isolare le classi
+					<p class="fragment highlight-red">Non è testabile</p></li>
 
-						<li>E se il prossimo concerto fosse di un gruppo Pop?
-						<p class="fragment highlight-red">Non è riutilizzabile</p></li>
-					</ul>
-				</section>
-
-
-
-                    <section>
-                        <h5>come migliorare la situazione</h5>
-                        <img class="stretch" src="reveal.js-3.5.0/rsc/v2_abstractions.jpg">
-                    </section>
-                    <section>
-                        <p>Aumentando il livello di astrazione, e passando gli oggetti dall'esterno, adesso il DepositoGiordani può decidere se chiamare un gruppo Rock o un gruppo Pop</p>
-                    </section>
+				<li>E se il prossimo concerto fosse di un gruppo Pop?
+					<p class="fragment highlight-red">Non è riutilizzabile</p></li>
+			</ul>
+		</section>
 
 
 
-				<section>
-                <section>
-                    <h4>Band</h4>
+		<section>
+			<h5>come migliorare la situazione</h5>
+			<img class="stretch" src="reveal.js-3.5.0/rsc/v2_abstractions.jpg">
+		</section>
+		<section>
+			<p>Aumentando il livello di astrazione, e passando gli oggetti dall'esterno, adesso il DepositoGiordani può decidere se chiamare un gruppo Rock o un gruppo Pop</p>
+		</section>
+
+
+
+		<section>
+			<section>
+				<h4>Band</h4>
                     <pre><code data-trim data-noescape>
-public class Band {
+						public class Band {
 
- private <span class="fragment highlight-green">Guitarist guitarPlayer;</span>
- private Singer singer;
- private <span class="fragment highlight-green">Drummer drummer;</span>
+						private <span style="color: lawngreen">Guitarist guitarPlayer;</span>
+						private Singer singer;
+						private <span style="color: lawngreen">Drummer drummer;</span>
 
-public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
- this.guitarPlayer = guitarist;
- this.singer = singer;
- this.drummer = drummer;
-}
+						public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
+						this.guitarPlayer = guitarist;
+						this.singer = singer;
+						this.drummer = drummer;
+						}
 
-public void playSomething(boolean isRock) {
- ...
-}
-                    </code></pre>
-					<p>passaggio a parametro di interfacce</p>
-					<p>la creazione degli oggetti concreti è isolata</p>
-                </section>
+						public void playSomething(boolean isRock) {
+						...
+						}
+					</code></pre>
+				<p>passaggio a parametro di interfacce</p>
+				<p>la creazione degli oggetti concreti è isolata</p>
+			</section>
 
-                <section>
-					<div class="row">
-						<div class="left">
+			<section>
+				<div class="row">
+					<div class="left">
 
 
 
-                    <h4>Main_v2</h4>
+						<h4>Main_v2</h4>
                     <pre width="auto"><code style="font-size: medium" data-trim data-noescape>
-public class Main {
+						public class Main {
 
- public static void main(String[] args) {
+						public static void main(String[] args) {
 
- Singer singer = new Singer();
- singer.setDecibel(75);
+						Singer singer = new Singer();
  <span style="color: lawngreen">Drummer drummer =
 	 new PopDrummer(new Drums());</span>
  <span style="color: lawngreen">Guitarist guitarist =
 	 new PopGuitarist(new AcusticGuitar());</span>
- Band band = new Band(guitarist, singer, drummer);
+						Band band =
+						new Band(guitarist, singer, drummer);
 
- DepositoGiordani giordani =
-	 new DepositoGiordani(band);
- giordani.hiresPopBand();
- }
-}
-                    </code></pre>
-						</div>
-						<div class="right">
-							<h4>Main_v1</h4>
+						DepositoGiordani giordani =
+						new DepositoGiordani(band);
+						giordani.hiresPopBand();
+						}
+						}
+					</code></pre>
+					</div>
+					<div class="right">
+						<h4>Main_v1</h4>
 					<pre width="auto"><code style="font-size: medium" data-trim>
-public class Main {
- public static void main(String[] args) {
+						public class Main {
+						public static void main(String[] args) {
 
-  DepositoGiordani deposito =
-	 new DepositoGiordani();
+						DepositoGiordani deposito =
+						new DepositoGiordani();
 
-  depositoGiordani.hiresRockBand();
- }
-}
+						depositoGiordani.hiresRockBand();
+						}
+						}
 					</code></pre>
 					</div>
-					</div>
-                    <p class="fragment">E il test?</p>
-                </section>
+				</div>
+				<p class="fragment">E il test?</p>
+			</section>
 
-                <section>
-                    <h4>Unit Test</h4>
+			<section>
+				<h4>Unit Test</h4>
 					<pre><code data-trim data-noescape style="font-size: smaller">
-public class BandTest {
- @Test
- public void testBandPlaySomething() throws Exception {
-  Band band = new Band(guitarist, singer, drummer);
+						public class BandTest {
+						@Test
+						public void testBandPlaySomething() throws Exception {
+						RockerGuitarist guitarist = Mockito.mock(RockerGuitarist.class);
+						RockerDrummer drummer = Mockito.mock(RockerDrummer.class);
+						Singer singer = Mockito.mock(Singer.class);
 
-  RockerGuitarist guitarist = Mockito.mock(RockerGuitarist.class);
-  RockerDrummer drummer = Mockito.mock(RockerDrummer.class);
-  Singer singer = Mockito.mock(Singer.class);
+						Band band = new Band(guitarist, singer, drummer);
 
-  when(guitarist.playGuitar()).thenReturn("and I'm Slash, ");
-  when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
-  when(drummer.letsGetBeat()).thenReturn("now, Let's Rock!");
+						when(guitarist.playGuitar()).thenReturn("and I'm Slash, ");
+						when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+						when(drummer.letsGetBeat()).thenReturn("now, Let's Rock!");
 
-  assertEquals("I'm Axl Rose and I'm Slash, now, Let's Rock!",
+						assertEquals("I'm Axl Rose and I'm Slash, now, Let's Rock!",
 						band.playSomething(true));
- }
-}
-                    </code></pre>
-                </section>
-				</section>
-
-				<section>
-					<ul>
-						<p>PRO</p>
-						<li>Grazie al disaccoppiamento il codice <span class="fragment highlight-blue">è riutilizzabile</span></li>
-						<li>Ed <span class="fragment highlight-blue">è testabile</span></li>
-
-						<p>CONTRO</p>
-						<li>E' però aumentata la <span class="fragment highlight-red">complessità</span> nella creazione degli oggetti </li>
-					</ul>
-				</section>
-
-				<section>
-					<section>
-						<h3>Dagger 2</h3>
-						<ul>
-							<li>è un framework basato sulla dependency injection</li>
-							<li>facilita lo sviluppo in caso di Unit Test</li>
-							<li>disaccoppia le classi unite tra loro da una relazione</li>
-							<li>aumenta la riutilizzabilità del codice</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Dependency Injection</h3>
-						<div class="row">
-							<div class="left">
-								<img width="600" height="480" src="reveal.js-3.5.0/rsc/what-is-dependency-injection.jpg" />
-							</div>
-							<p style="font-size: smaller">Il legame tra le classi è esterno: nessun oggetto istanzia un altro oggetto, questo compito è delegato ad una terza classe di configurazione che fornisce le istanze stesse</p>
-						</div>
-					</section>
-
-				</section>
-
-				<section>
-					<section>
-						<h2>Dagger2</h2>
-						<p>Dagger fornisce delle classi "Helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
-						<p style="font-size: smaller">nb: le vecchie librerie sfruttavano la Reflection di Java che invece avviene tutto a RunTime</p>
-					</section>
-				<section>
-					<h2>Dagger2</h2>
-					<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>
-					<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>
-
-					<ul>
-						<li>@Module</li>
-						<li>@Component</li>
-						<li>@Inject</li>
-					</ul>
-
-				</section>
-					<section>
-						<h3>@Module</h3>
-						<p>crea le dipendenze attraverso metodi pubblici che istanziano (@Provides) gli oggetti</p>
-						<ul>
-							<li>Factory Pattern: creazione degli oggetti con interfacce</li>
-							<li>flessibilità</li>
-							<li>dipendenza debole</li>
-						</ul>
-					<pre><code>
+						}
+						}
 					</code></pre>
-					</section>
-					<section>
-						<h3>@Component</h3>
-						<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
-					</section>
-					<section>
-						<h3>@Iject</h3>
-						<p></p>
-				</section>
-				</section>
-			</div>
-		</div>
+			</section>
+		</section>
 
-		<script src="reveal.js-3.5.0/lib/js/head.min.js"></script>
-		<script src="reveal.js-3.5.0/js/reveal.js"></script>
+		<section>
+			<ul>
+				<p>PRO</p>
+				<li>Grazie al disaccoppiamento il codice <span class="fragment highlight-blue">è riutilizzabile</span></li>
+				<li>Ed <span class="fragment highlight-blue">è testabile</span></li>
 
-		<script>
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: false,
-				center: true,
+				<p>CONTRO</p>
+				<li>E' però aumentata la <span class="fragment highlight-red">complessità</span> nella creazione degli oggetti </li>
+			</ul>
+		</section>
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+		<section>
+			<section>
+				<h3>Dagger 2</h3>
+				<ul>
+					<li>è un framework basato sulla dependency injection</li>
+					<li>aumenta la riutilizzabilità del codice</li>
+					<li>disaccoppia le classi unite tra loro da una relazione</li>
+					<li>facilita lo sviluppo in caso di Unit Test</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Dependency Injection</h3>
+				<div class="row">
+					<div class="left">
+						<img width="600" height="480" src="reveal.js-3.5.0/rsc/what-is-dependency-injection.jpg" />
+					</div>
+					<p style="font-size: smaller">Il legame tra le classi è esterno: nessun oggetto istanzia un altro oggetto, questo compito è delegato ad una terza classe di configurazione che fornisce le istanze stesse</p>
+				</div>
+			</section>
 
-				// Optional reveal.js plugins
+		</section>
 
-				dependencies: [
-					{ src: 'reveal.js-3.5.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js-3.5.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js-3.5.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js-3.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'reveal.js-3.5.0/plugin/zoom-js/zoom.js', async: true },
-					{ src: 'reveal.js-3.5.0/plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
-	</body>
+		<section>
+			<section>
+				<h2>Dagger2</h2>
+				<p>Dagger fornisce delle classi "Helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
+				<p style="font-size: smaller">nb: le vecchie librerie sfruttavano la Reflection di Java che invece avviene tutto a RunTime</p>
+			</section>
+			<section>
+				<h2>Dagger2</h2>
+				<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>
+				<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>
+
+				<ul>
+					<li>@Module</li>
+					<li>@Component</li>
+					<li>@Inject</li>
+				</ul>
+
+			</section>
+			<section>
+				<h3>@Module</h3>
+				<p>crea le dipendenze attraverso metodi pubblici che istanziano (@Provides) gli oggetti</p>
+				<ul>
+					<li>Factory Pattern: creazione degli oggetti con interfacce</li>
+					<li>flessibilità</li>
+					<li>dipendenza debole</li>
+				</ul>
+			</section>
+			<section>
+				<h3>@Component</h3>
+				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
+			</section>
+			<section>
+				<h3>@Iject</h3>
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h4>@Module</h4>
+							<pre><code data-trim>
+@Module
+public class RockBandModule {
+  @Provides
+  public Guitarist providesGuitarist(ElectricGuitar guitar){
+   return new RockerGuitarist(guitar);
+  }
+  @Provides
+  public Drummer providesDrummer(Drums drums){
+   return new RockerDrummer(drums);
+  }
+}
+							</code></pre>
+			</section>
+			<section>
+				<h4>@Component e @Inject</h4>
+						<pre><code data-trim>
+@Component(modules = {RockBandModule.class,
+		RockInstrumentModule.class} )
+public interface RockBandComponent {
+
+  Band injectBand();
+  DepositoGiordani injectDeposito();
+}
+						</code></pre>
+						<pre><code>
+public class Band{
+...
+  @Inject
+  public Band(Guitarist guitarist,
+  		Singer singer,
+		Drummer drummer) {
+   this.guitarPlayer = guitarist;
+   this.singer = singer;
+   this.drummer = drummer;
+  }
+  ...
+}
+						</code></pre>
+			</section>
+			<section>
+				<h4>Main</h4>
+						<pre class="stretch"><code data-trim>
+public class Main {
+  public static void main(String[] args) {
+
+   RockBandComponent rockComponent =
+		DaggerRockBandComponent
+			.builder()
+			.build();
+
+   PopBandComponent popComponent =
+		DaggerPopBandComponent
+			.builder()
+			.build();
+
+   DepositoGiordani rock =
+  		rockComponent.injectDeposito();
+
+   weWillRockYou = rock.hiresRockBand();
+  ....
+}}
+						</code></pre>
+			</section>
+			<section>
+						<pre class="stretch"><code data-trim style="font-size: smaller">
+public final class DaggerRockBandComponent implements RockBandComponent {
+  private Provider&lt;ElectricGuitar&gt; providesGuitarProvider;
+  private Provider&lt;Guitarist&gt; providesGuitaristProvider;
+  private Provider&lt;Singer&gt; providesSingerProvider;
+  private Provider&lt;Drums&gt; providesDrumsProvider;
+  private Provider&lt;Drummer&gt; providesDrummerProvider;
+  private Provider&lt;Band&gt; bandProvider;
+  private Provider&lt;DepositoGiordani&gt; depositoGiordaniProvider;
+
+  ...
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+
+   this.providesGuitarProvider =
+   		RockInstrumentModule_ProvidesGuitarFactory
+		.create(builder.rockInstrumentModule);
+
+   this.providesGuitaristProvider =
+		RockBandModule_ProvidesGuitaristFactory
+		.create(builder.rockBandModule, providesGuitarProvider);
+
+   this.providesSingerProvider =
+		DoubleCheck.provider(RockBandModule_ProvidesSingerFactory
+		.create(builder.rockBandModule));
+
+   this.providesDrumsProvider =
+		RockInstrumentModule_ProvidesDrumsFactory
+		.create(builder.rockInstrumentModule);
+
+   this.providesDrummerProvider =
+		RockBandModule_ProvidesDrummerFactory
+		.create(builder.rockBandModule, providesDrumsProvider);
+
+   this.bandProvider =
+		Band_Factory.create(
+		providesGuitaristProvider, providesSingerProvider, providesDrummerProvider);
+
+  this.depositoGiordaniProvider =
+		DepositoGiordani_Factory.create(
+		bandProvider, providesSingerProvider, providesGuitaristProvider);
+}
+
+ @Override
+ public Band injectBand() {
+  return new Band(
+   providesGuitaristProvider.get(),
+   providesSingerProvider.get(),
+   providesDrummerProvider.get());
+}
+
+ @Override
+ public DepositoGiordani injectDeposito() {
+   return new DepositoGiordani(
+   new Band(
+  ...
+}
+...
+}
+						</code></pre>
+			</section>
+		</section>
+	</div>
+</div>
+
+<script src="reveal.js-3.5.0/lib/js/head.min.js"></script>
+<script src="reveal.js-3.5.0/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: false,
+		center: true,
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+		// Optional reveal.js plugins
+
+		dependencies: [
+			{ src: 'reveal.js-3.5.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'reveal.js-3.5.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'reveal.js-3.5.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'reveal.js-3.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'reveal.js-3.5.0/plugin/zoom-js/zoom.js', async: true },
+			{ src: 'reveal.js-3.5.0/plugin/notes/notes.js', async: true }
+		]
+	});
+</script>
+</body>
 </html>
