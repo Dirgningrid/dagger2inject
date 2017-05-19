@@ -99,9 +99,6 @@ public class Band {
 					</div>
 
 				</section>
-				<section data-transition="fade">
-					<img  width="701" height="496" src="reveal.js-3.5.0/rsc/v1_uglyCode-2.jpg">
-				</section>
 					<section>
 						<h5>Diamo un'occhiata al Main</h5>
 					<pre><code>
@@ -109,13 +106,11 @@ public class Main {
 
 public static void main(String[] args) {
 
- DepositoGiordani depositoGiordani;
+ DepositoGiordani deposito = new DepositoGiordani();
 
- depositoGiordani = new DepositoGiordani();
+ depositoGiordani.hiresRockBand();
 
- depositoGiordani.claimRockBand();
-
-}
+ }
 }
 					</code></pre>
 						<p class="fragment grow">Come fareste il test?</p>
@@ -132,7 +127,7 @@ public static void main(String[] args) {
 					</ul>
 				</section>
 
-                <section>
+
 
                     <section>
                         <h5>come migliorare la situazione</h5>
@@ -142,7 +137,7 @@ public static void main(String[] args) {
                         <p>Aumentando il livello di astrazione, e passando gli oggetti dall'esterno, adesso il DepositoGiordani può decidere se chiamare un gruppo Rock o un gruppo Pop</p>
                     </section>
 
-                </section>
+
 
 				<section>
                 <section>
@@ -150,11 +145,11 @@ public static void main(String[] args) {
                     <pre><code data-trim data-noescape>
 public class Band {
 
- private Guitarist guitarPlayer;
+ private <span class="fragment highlight-green">Guitarist guitarPlayer;</span>
  private Singer singer;
- private Drummer drummer;
+ private <span class="fragment highlight-green">Drummer drummer;</span>
 
-public Band(<span class="fragment highlight-green">Guitarist guitarist, Singer singer, Drummer drummer</span>) {
+public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
  this.guitarPlayer = guitarist;
  this.singer = singer;
  this.drummer = drummer;
@@ -164,34 +159,53 @@ public void playSomething(boolean isRock) {
  ...
 }
                     </code></pre>
+					<p>passaggio a parametro di interfacce</p>
+					<p>la creazione degli oggetti concreti è isolata</p>
                 </section>
 
                 <section>
-                    <h4>Main</h4>
-                    <pre class="stretch"><code data-trim data-noescape>
+					<div class="row">
+						<div class="left">
+
+
+
+                    <h4>Main_v2</h4>
+                    <pre width="auto"><code style="font-size: medium" data-trim data-noescape>
 public class Main {
 
  public static void main(String[] args) {
 
- DepositoGiordani depositoGiordani;
-
  Singer singer = new Singer();
  singer.setDecibel(75);
-
- <span class="fragment highlight-green">Drummer drummer = new PopDrummer(new Drums());</span>
-
- <span class="fragment highlight-green">Guitarist guitarist = new PopGuitarist(new AcusticGuitar());</span>
-
+ <span style="color: lawngreen">Drummer drummer =
+	 new PopDrummer(new Drums());</span>
+ <span style="color: lawngreen">Guitarist guitarist =
+	 new PopGuitarist(new AcusticGuitar());</span>
  Band band = new Band(guitarist, singer, drummer);
 
- depositoGiordani = new DepositoGiordani(band);
-
- depositoGiordani.hiresPopBand();
-
+ DepositoGiordani giordani =
+	 new DepositoGiordani(band);
+ giordani.hiresPopBand();
  }
 }
                     </code></pre>
-                    <p class="fragment fade-right">E il test?</p>
+						</div>
+						<div class="right">
+							<h4>Main_v1</h4>
+					<pre width="auto"><code style="font-size: medium" data-trim>
+public class Main {
+ public static void main(String[] args) {
+
+  DepositoGiordani deposito =
+	 new DepositoGiordani();
+
+  depositoGiordani.hiresRockBand();
+ }
+}
+					</code></pre>
+					</div>
+					</div>
+                    <p class="fragment">E il test?</p>
                 </section>
 
                 <section>
@@ -221,8 +235,9 @@ public class BandTest {
 				<section>
 					<ul>
 						<p>PRO</p>
-						<li>Usando le interfacce ora <span class="fragment highlight-blue">è testabile</span></li>
-						<li>Il codice <span class="fragment highlight-blue">è riutilizzabile</span></li>
+						<li>Grazie al disaccoppiamento il codice <span class="fragment highlight-blue">è riutilizzabile</span></li>
+						<li>Ed <span class="fragment highlight-blue">è testabile</span></li>
+
 						<p>CONTRO</p>
 						<li>E' però aumentata la <span class="fragment highlight-red">complessità</span> nella creazione degli oggetti </li>
 					</ul>
@@ -244,19 +259,22 @@ public class BandTest {
 							<div class="left">
 								<img width="600" height="480" src="reveal.js-3.5.0/rsc/what-is-dependency-injection.jpg" />
 							</div>
-							<p style="font-size: smaller">una classe lega la propria relazione con un'altra classe dall'esterno: nessun oggetto istanzia un altro oggetto, questo compito è delegato ad una terza classe di configurazione che fornisce le istanze stesse</p>
+							<p style="font-size: smaller">Il legame tra le classi è esterno: nessun oggetto istanzia un altro oggetto, questo compito è delegato ad una terza classe di configurazione che fornisce le istanze stesse</p>
 						</div>
 					</section>
-					<section>
-						Dagger fornisce delle classi "Helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime (!), legando i @Module tra loro, invocandone i metodi di providing,(vd. Factory) allo scopo di passare i parametri di cui il @Component ha bisogno per l'@Inject degli oggetti! BOOOOMMM!
-					</section>
+
 				</section>
 
 				<section>
+					<section>
+						<h2>Dagger2</h2>
+						<p>Dagger fornisce delle classi "Helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
+						<p style="font-size: smaller">nb: le vecchie librerie sfruttavano la Reflection di Java che invece avviene tutto a RunTime</p>
+					</section>
 				<section>
+					<h2>Dagger2</h2>
 					<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>
-					<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection</p>
-					<p style="font-size: x-small">- Reflection + Annotation</p>
+					<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>
 
 					<ul>
 						<li>@Module</li>
@@ -265,11 +283,24 @@ public class BandTest {
 					</ul>
 
 				</section>
-				<section>
-					<h2>@Module</h2>
-					<p>crea le dipendenze attraverso metodi pubblici che istanziano (@Provides) gli oggetti</p>
+					<section>
+						<h3>@Module</h3>
+						<p>crea le dipendenze attraverso metodi pubblici che istanziano (@Provides) gli oggetti</p>
+						<ul>
+							<li>Factory Pattern: creazione degli oggetti con interfacce</li>
+							<li>flessibilità</li>
+							<li>dipendenza debole</li>
+						</ul>
 					<pre><code>
 					</code></pre>
+					</section>
+					<section>
+						<h3>@Component</h3>
+						<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
+					</section>
+					<section>
+						<h3>@Iject</h3>
+						<p></p>
 				</section>
 				</section>
 			</div>
