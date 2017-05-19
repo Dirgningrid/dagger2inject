@@ -2,7 +2,7 @@
 build/
 .idea/
 .DS_Store
-dagger2/
+dagger2/.idea/workspace.xml
 
 # Ignore Gradle GUI config
 gradle-app.setting
