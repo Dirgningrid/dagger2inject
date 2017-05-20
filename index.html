@@ -51,18 +51,18 @@
 				<h3>DepositoGiordani</h3>
 
 					<pre style="width: auto"><code class="hljs" data-trim data-noescape>
-						public class DepositoGiordani {
+public class DepositoGiordani {
 
-						private Band band;
+  private Band band;
 
-						public DepositoGiordani(){
-						<span class="fragment highlight-green">this.band = new Band();</span>
-						}
+ public DepositoGiordani(){
+  <span class="fragment highlight-green">this.band = new Band();</span>
+ }
 
-						public void claimRockBand(){
-						band.playSomething();
-						}
-						}
+ public void claimRockBand(){
+  band.playSomething();
+ }
+}
 					</code></pre>
 
 
@@ -75,23 +75,23 @@
 				<h3>Band</h3>
 
 						<pre style="width: auto"><code class="hljs" data-trim data-noescape=>
-							public class Band {
+public class Band {
 
-							private RockerGuitarist guitarPlayer;
-							private Singer singer;
-							private RockerDrummer drummer;
+ private RockerGuitarist guitarPlayer;
+ private Singer singer;
+ private RockerDrummer drummer;
 
-							public Band() {
-  <span class="fragment highlight-green">this.guitarPlayer = new RockerGuitarist();
-  this.singer = new Singer();
-  singer.setVoiceDecibel(70);
-  this.drummer = new RockerDrummer();</span>
-							}
+public Band() {
+ <span class="fragment highlight-green">this.guitarPlayer = new RockerGuitarist();
+ this.singer = new Singer();
+ singer.setVoiceDecibel(70);
+ this.drummer = new RockerDrummer();</span>
+}
 
-							public void playSomething(){
-							...
-							}
-							}
+ public void playSomething(){
+ ...
+ }
+}
 						</code></pre>
 
 				<div class="left">
@@ -102,16 +102,15 @@
 			<section>
 				<h5>Diamo un'occhiata al Main</h5>
 					<pre><code>
-						public class Main {
+public class Main {
 
-						public static void main(String[] args) {
+ public static void main(String[] args) {
 
-						DepositoGiordani deposito = new DepositoGiordani();
+  DepositoGiordani deposito = new DepositoGiordani();
 
-						depositoGiordani.hiresRockBand();
-
-						}
-						}
+  depositoGiordani.hiresRockBand();
+ }
+}
 					</code></pre>
 				<p class="fragment grow">Come fareste il test?</p>
 			</section>
@@ -143,21 +142,22 @@
 			<section>
 				<h4>Band</h4>
                     <pre><code data-trim data-noescape>
-						public class Band {
+public class Band {
 
-						private <span style="color: lawngreen">Guitarist guitarPlayer;</span>
-						private Singer singer;
-						private <span style="color: lawngreen">Drummer drummer;</span>
+ private <span style="color: lawngreen">Guitarist guitarPlayer;</span>
+ private Singer singer;
+ private <span style="color: lawngreen">Drummer drummer;</span>
 
-						public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
-						this.guitarPlayer = guitarist;
-						this.singer = singer;
-						this.drummer = drummer;
-						}
+ public Band(Guitarist guitarist, Singer singer, Drummer drummer) {
+  this.guitarPlayer = guitarist;
+  this.singer = singer;
+  this.drummer = drummer;
+ }
 
-						public void playSomething(boolean isRock) {
-						...
-						}
+ public void playSomething(boolean isRock) {
+  ...
+ }
+}
 					</code></pre>
 				<p>passaggio a parametro di interfacce</p>
 				<p>la creazione degli oggetti concreti è isolata</p>
@@ -171,37 +171,37 @@
 
 						<h4>Main_v2</h4>
                     <pre width="auto"><code style="font-size: medium" data-trim data-noescape>
-						public class Main {
+public class Main {
 
-						public static void main(String[] args) {
+ public static void main(String[] args) {
 
-						Singer singer = new Singer();
- <span style="color: lawngreen">Drummer drummer =
-	 new PopDrummer(new Drums());</span>
- <span style="color: lawngreen">Guitarist guitarist =
-	 new PopGuitarist(new AcusticGuitar());</span>
-						Band band =
-						new Band(guitarist, singer, drummer);
+  Singer singer = new Singer();
+  <span style="color: lawngreen">Drummer drummer =
+   		new PopDrummer(new Drums());</span>
+  <span style="color: lawngreen">Guitarist guitarist =
+		new PopGuitarist(new AcusticGuitar());</span>
+  Band band =
+		new Band(guitarist, singer, drummer);
 
-						DepositoGiordani giordani =
-						new DepositoGiordani(band);
-						giordani.hiresPopBand();
-						}
-						}
+  DepositoGiordani giordani =
+		new DepositoGiordani(band);
+  giordani.hiresPopBand();
+}
+}
 					</code></pre>
 					</div>
 					<div class="right">
 						<h4>Main_v1</h4>
 					<pre width="auto"><code style="font-size: medium" data-trim>
-						public class Main {
-						public static void main(String[] args) {
+public class Main {
+  public static void main(String[] args) {
 
-						DepositoGiordani deposito =
-						new DepositoGiordani();
+  DepositoGiordani deposito =
+		new DepositoGiordani();
 
-						depositoGiordani.hiresRockBand();
-						}
-						}
+  depositoGiordani.hiresRockBand();
+ }
+}
 					</code></pre>
 					</div>
 				</div>
@@ -211,23 +211,23 @@
 			<section>
 				<h4>Unit Test</h4>
 					<pre><code data-trim data-noescape style="font-size: smaller">
-						public class BandTest {
-						@Test
-						public void testBandPlaySomething() throws Exception {
-						RockerGuitarist guitarist = Mockito.mock(RockerGuitarist.class);
-						RockerDrummer drummer = Mockito.mock(RockerDrummer.class);
-						Singer singer = Mockito.mock(Singer.class);
+public class BandTest {
+ @Test
+ public void testBandPlaySomething() throws Exception {
+  RockerGuitarist guitarist = Mockito.mock(RockerGuitarist.class);
+  RockerDrummer drummer = Mockito.mock(RockerDrummer.class);
+  Singer singer = Mockito.mock(Singer.class);
 
-						Band band = new Band(guitarist, singer, drummer);
+  Band band = new Band(guitarist, singer, drummer);
 
-						when(guitarist.playGuitar()).thenReturn("and I'm Slash, ");
-						when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
-						when(drummer.letsGetBeat()).thenReturn("now, Let's Rock!");
+  when(guitarist.playGuitar()).thenReturn("and I'm Slash, ");
+  when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+  when(drummer.letsGetBeat()).thenReturn("now, Let's Rock!");
 
-						assertEquals("I'm Axl Rose and I'm Slash, now, Let's Rock!",
-						band.playSomething(true));
-						}
-						}
+  assertEquals("I'm Axl Rose and I'm Slash, now, Let's Rock!",
+  band.playSomething(true));
+ }
+}
 					</code></pre>
 			</section>
 		</section>
@@ -268,7 +268,7 @@
 		<section>
 			<section>
 				<h2>Dagger2</h2>
-				<p>Dagger fornisce delle classi "Helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
+				<p>Dagger fornisce delle classi "helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
 				<p style="font-size: smaller">nb: le vecchie librerie sfruttavano la Reflection di Java che invece avviene tutto a RunTime</p>
 			</section>
 			<section>
