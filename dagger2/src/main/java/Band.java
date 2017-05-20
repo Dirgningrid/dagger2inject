@@ -1,4 +1,3 @@
-import musicians.Classical;
 import musicians.Guitarist;
 import musicians.Rocker;
 import musicians.Singer;
