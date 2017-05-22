@@ -241,9 +241,6 @@ public class BandTest {
 
 			<section>
 				<h2>Dagger2</h2>
-				<!--<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>-->
-				<!--<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>-->
-
 				<ul>
 					<li>@Module</li>
 					<li>@Component</li>
@@ -265,7 +262,7 @@ public class BandTest {
 				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
 				<div class="fragment fade-up">
 				<h3>@Iject</h3>
-				<p>Indica in che modo creare l'oggetto</p>
+				<p>Indica dove iniettare le dipendenze che Dagger ha creato</p>
 				</div>
 			</section>
 		</section>
@@ -323,11 +320,11 @@ public class Band{
 			<section>
 				<h4>Main</h4>
 				<p>Dagger fornisce delle classi "helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
-				<pre><code data-trim>
+				<pre><code data-trim data-noescape>
 public class Main {
   public static void main(String[] args) {
    RockBandComponent rockComponent =
-		DaggerRockBandComponent
+			<span style="color: lawngreen">DaggerRockBandComponent</span>
 			.builder()
 			.build();
 
@@ -361,7 +358,7 @@ public class BandMockModule {
   @Provides
   public Drummer providesDrummer(Drums drums){
    Drummer drummer = Mockito.mock(Drummer.class);
-    when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop and whatever!");
+    when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop or whatever!");
     return drummer;
  }
 			</code></pre>
