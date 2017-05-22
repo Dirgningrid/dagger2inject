@@ -1,17 +1,15 @@
 package didag2.example;
 
-import didag2.example.Band;
-import didag2.example.dagger.DaggerRockBandComponent;
-import didag2.example.dagger.RockBandComponent;
-import didag2.example.dagger.RockBandComponentTest;
-import didag2.example.musicians.PopDrummer;
-import didag2.example.musicians.PopGuitarist;
+import didag2.example.dagger.BandComponentTest;
+import didag2.example.dagger.DaggerBandComponentTest;
+import didag2.example.musicians.RockerDrummer;
+import didag2.example.musicians.RockerGuitarist;
 import didag2.example.musicians.Singer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
@@ -25,13 +23,17 @@ public class BandTestOld {
 
     @Test
     public void testPlaySomething() throws Exception {
+        RockerGuitarist guitarist = Mockito.mock(RockerGuitarist.class);
+        RockerDrummer drummer = Mockito.mock(RockerDrummer.class);
+        Singer singer = Mockito.mock(Singer.class);
 
-//        BandComponentTest component =
-//                DaggerBandComponentTest
-//                        .builder()
-//                        .build();
-//
-//        Band band = component.injectBand();
-//        assertThat();
+        Band band = new Band(guitarist, singer, drummer);
+
+        when(guitarist.playGuitar()).thenReturn("and I'm Slash, ");
+        when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+        when(drummer.letsGetBeat()).thenReturn("now, Let's Rock!");
+
+        assertEquals("I'm Axl Rose and I'm Slash, now, Let's Rock!",
+                band.playSomething(true));
     }
 }

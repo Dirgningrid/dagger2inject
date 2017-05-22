@@ -24,18 +24,22 @@ public class BandMockModule {
 
     @Provides
     public Guitarist providesGuitarist(ElectricGuitar guitar){
-        Guitarist m = Mockito.mock(Guitarist.class);
-        when(m.playGuitar()).thenReturn("A");
-        return m;
+        Guitarist guitarist = Mockito.mock(Guitarist.class);
+        when(guitarist.playGuitar()).thenReturn("I'm Slash ");
+        return guitarist;
     }
 
     @Provides
     public Singer providesSinger(){
-        return Mockito.mock(Singer.class);
+        Singer singer = Mockito.mock(Singer.class);
+        when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+        return singer;
     }
 
     @Provides
     public Drummer providesDrummer(Drums drums){
-        return Mockito.mock(Drummer.class);
+        Drummer drummer = Mockito.mock(Drummer.class);
+        when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
+        return drummer;
     }
 }
