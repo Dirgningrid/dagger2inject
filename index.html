@@ -347,34 +347,50 @@ public class Main {
 @Module
 public class BandMockModule {
   @Provides
-  public Guitarist providesGuitarist(ElectricGuitar guitar){
+  public Guitarist providesGuitarist(Guitar guitar){
    Guitarist guitarist = Mockito.mock(Guitarist.class);
-    when(guitarist.playGuitar()).thenReturn("I'm Slash ");
+    when(guitarist.playGuitar()).thenReturn("I'm Jhon Frusciante ");
     return guitarist;
  }
   @Provides
   public Singer providesSinger(){
    Singer singer = Mockito.mock(Singer.class);
-    when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+    when(singer.singingSomething(true)).thenReturn("I'm Anthony Kiedis ");
     return singer;
  }
   @Provides
   public Drummer providesDrummer(Drums drums){
    Drummer drummer = Mockito.mock(Drummer.class);
-    when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
+    when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop and whatever!");
     return drummer;
  }
-}
 			</code></pre>
 
 		</section>
 		<section>
+			<pre><code data-trim>
+@Module
+public class InstrumentMock {
+
+  @Provides
+  public Guitar providesGuitar(){
+   return Mockito.mock(Guitar.class);
+  }
+
+  @Provides
+  public Drums providesDrums(){
+   return Mockito.mock(Drums.class);
+  }
+}
+			</code></pre>
 			<pre><code data-trim>
 @Component(modules = {BandMockModule.class, InstrumentMock.class})
 public interface BandComponentTest {
    Band injectBand();
 }
 			</code></pre>
+			</section>
+			<section>
 			<pre><code data-trim>
 public class RockBandTestDagger {
  @Test
@@ -386,12 +402,21 @@ public class RockBandTestDagger {
 
   Band band = component.injectBand();
 
-  assertEquals("I'm Axl Rose I'm Slash now, let's rock!",
-				band.playSomething(true));
+  assertEquals("I'm Anthony Kiedis I'm John Frusciante
+			now, let's funky rock pop and whatever!",
+			band.playSomething(true));
  }
 }
 		</code></pre>
 		</section>
+		</section>
+
+		<section>
+			<h4>Thank you</h4>
+			<ul style="list-style: none">
+				<li><a href="https://github.com/Dirgningrid/dagger2inject" style="color: #068de9">https://github.com/Dirgningrid/dagger2inject</a> </li>
+
+			</ul>
 		</section>
 	</div>
 </div>
