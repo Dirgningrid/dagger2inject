@@ -20,7 +20,6 @@ public interface RockBandComponent {
 
     DepositoGiordani injectDeposito();
 
-    Singer injectSinger();
+    //Singer injectSinger();
 
-    Guitarist injectGuitarist();
 }
