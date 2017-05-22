@@ -20,6 +20,7 @@ public interface RockBandComponent {
 
     DepositoGiordani injectDeposito();
 
-    Singer injectSinger();
+    //prova singleton
+    //Singer injectSinger();
 
 }

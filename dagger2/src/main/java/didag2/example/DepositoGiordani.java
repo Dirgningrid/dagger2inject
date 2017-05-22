@@ -15,10 +15,8 @@ public class DepositoGiordani {
     Singer singer; Guitarist guitar;
 
     @Inject
-    public DepositoGiordani(Band band, Singer singer, Guitarist guitar) {
+    public DepositoGiordani(Band band) {
         this.band = band;
-        this.singer = singer;
-        this.guitar = guitar;
     }
 
     public String hiresRockBand(){

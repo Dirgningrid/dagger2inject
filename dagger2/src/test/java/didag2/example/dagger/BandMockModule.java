@@ -35,7 +35,7 @@ public class BandMockModule {
     @Provides
     public Drummer providesDrummer(Drums drums){
         Drummer drummer = Mockito.mock(Drummer.class);
-        when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop whenever!");
+        when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop or whatever!");
         return drummer;
     }
 }
