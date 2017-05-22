@@ -314,7 +314,12 @@ public class RockBandModule {
   @Provides
   public Drummer providesDrummer(Drums drums){
    return new RockerDrummer(drums);
+
+  @Provides
+  public Singer providesSinger(){
+   return new Singer();
   }
+ }
 }
 							</code></pre>
 			</section>
@@ -430,6 +435,66 @@ public final class DaggerRockBandComponent implements RockBandComponent {
 }
 						</code></pre>
 			</section>
+		</section>
+		<section>
+		<section>
+			<h4>Unit Test</h4>
+			<pre class="stretch"><code data-trim style="font-size: smaller">
+@Module
+public class BandMockModule {
+
+  @Provides
+  public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
+   return new Band(guitarist, singer, drummer);
+ }
+
+  @Provides
+  public Guitarist providesGuitarist(ElectricGuitar guitar){
+  Guitarist guitarist = Mockito.mock(Guitarist.class);
+   when(guitarist.playGuitar()).thenReturn("I'm Slash ");
+   return guitarist;
+ }
+
+  @Provides
+  public Singer providesSinger(){
+  Singer singer = Mockito.mock(Singer.class);
+   when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+   return singer;
+ }
+
+  @Provides
+  public Drummer providesDrummer(Drums drums){
+  Drummer drummer = Mockito.mock(Drummer.class);
+   when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
+   return drummer;
+ }
+}
+			</code></pre>
+
+		</section>
+		<section>
+			<pre><code data-trim>
+@Component(modules = {BandMockModule.class, InstrumentMock.class})
+public interface BandComponentTest extends RockBandComponent {
+   Band injectBand();
+}
+			</code></pre>
+			<pre><code data-trim>
+public class RockBandTestDagger {
+ @Test
+ public void playSomething(){
+  BandComponentTest component =
+  DaggerBandComponentTest
+   	.builder()
+	.build();
+
+  Band band = component.injectBand();
+
+  assertEquals("I'm Axl Rose I'm Slash now, let's rock!", band.playSomething(true));
+ }
+}
+		</code></pre>
+		</section>
 		</section>
 	</div>
 </div>
