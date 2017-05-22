@@ -265,7 +265,7 @@ public class BandTest {
 				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
 				<div class="fragment fade-up">
 				<h3>@Iject</h3>
-				<p>Indica dove creare l'oggetto</p>
+				<p>Indica in che modo creare l'oggetto</p>
 				</div>
 			</section>
 		</section>
@@ -338,14 +338,6 @@ public class Main {
 }}
 				</code></pre>
 			</section>
-			<section>
-				<h2>Dagger2</h2>
-				<ul>
-					<li>aumenta la riutilizzabilità del codice</li>
-					<li>disaccoppia le classi unite tra loro da una relazione</li>
-					<li>facilita lo sviluppo in caso di Unit Test</li>
-				</ul>
-			</section>
 		</section>
 
 		<section>
@@ -354,21 +346,18 @@ public class Main {
 			<pre class="stretch"><code data-trim style="font-size: smaller">
 @Module
 public class BandMockModule {
-
   @Provides
   public Guitarist providesGuitarist(ElectricGuitar guitar){
    Guitarist guitarist = Mockito.mock(Guitarist.class);
     when(guitarist.playGuitar()).thenReturn("I'm Slash ");
     return guitarist;
  }
-
   @Provides
   public Singer providesSinger(){
    Singer singer = Mockito.mock(Singer.class);
     when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
     return singer;
  }
-
   @Provides
   public Drummer providesDrummer(Drums drums){
    Drummer drummer = Mockito.mock(Drummer.class);
