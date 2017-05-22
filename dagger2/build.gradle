@@ -60,8 +60,6 @@ dependencies {
     testCompile "junit:junit:4.12"
     testCompile "com.google.truth:truth:0.30"
     testCompile "org.mockito:mockito-core:1.+"
-    testCompile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    testCompile "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
     compile "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"

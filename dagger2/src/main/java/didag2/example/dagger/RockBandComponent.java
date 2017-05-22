@@ -22,5 +22,4 @@ public interface RockBandComponent {
 
     Singer injectSinger();
 
-    Guitarist injectGuitarist();
 }

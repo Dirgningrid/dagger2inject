@@ -15,8 +15,8 @@ import org.mockito.Mockito;
 public class InstrumentMock {
 
     @Provides
-    public ElectricGuitar providesGuitar(){
-        return Mockito.mock(ElectricGuitar.class);
+    public Guitar providesGuitar(){
+        return Mockito.mock(Guitar.class);
     }
 
     @Provides

@@ -26,7 +26,7 @@ public class RockBandTestDagger {
 
         Band band = component.injectBand();
 
-        assertEquals("I'm Axl Rose I'm Slash now, let's rock!", band.playSomething(true));
+        assertEquals("I'm Anthony Kiedis I'm John Frusciante now, let's funky rock pop whenever!", band.playSomething(true));
     }
 
 }

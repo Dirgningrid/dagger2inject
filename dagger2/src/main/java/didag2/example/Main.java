@@ -29,14 +29,8 @@ public class Main {
 
         DepositoGiordani rock = rockComponent.injectDeposito();
 
-        Singer singer = rockComponent.injectSinger();
-        Guitarist guitarist = rockComponent.injectGuitarist();
-        //singer.singingSomething(true);
-        System.out.printf(singer.toString());
-
         weWillRockYou = rock.hiresRockBand();
         System.out.println(weWillRockYou);
-
 
         DepositoGiordani pop = popComponent.injectDeposito();
 

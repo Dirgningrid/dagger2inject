@@ -5,6 +5,7 @@ import dagger.Provides;
 import didag2.example.Band;
 import didag2.example.instruments.Drums;
 import didag2.example.instruments.ElectricGuitar;
+import didag2.example.instruments.Guitar;
 import didag2.example.musicians.*;
 import org.mockito.Mockito;
 
@@ -18,28 +19,23 @@ import static org.mockito.Mockito.when;
 public class BandMockModule {
 
     @Provides
-    public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
-        return new Band(guitarist, singer, drummer);
-    }
-
-    @Provides
-    public Guitarist providesGuitarist(ElectricGuitar guitar){
+    public Guitarist providesGuitarist(Guitar guitar){
         Guitarist guitarist = Mockito.mock(Guitarist.class);
-        when(guitarist.playGuitar()).thenReturn("I'm Slash ");
+        when(guitarist.playGuitar()).thenReturn("I'm John Frusciante ");
         return guitarist;
     }
 
     @Provides
     public Singer providesSinger(){
         Singer singer = Mockito.mock(Singer.class);
-        when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+        when(singer.singingSomething(true)).thenReturn("I'm Anthony Kiedis ");
         return singer;
     }
 
     @Provides
     public Drummer providesDrummer(Drums drums){
         Drummer drummer = Mockito.mock(Drummer.class);
-        when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
+        when(drummer.letsGetBeat()).thenReturn("now, let's funky rock pop whenever!");
         return drummer;
     }
 }
