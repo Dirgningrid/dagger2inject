@@ -1,4 +1,4 @@
-# Dependecy Injection &amp; Dagger2
+# Dependency Injection &amp; Dagger2
 
 
 
