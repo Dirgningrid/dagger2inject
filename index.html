@@ -28,8 +28,8 @@
 <div class="reveal">
 	<div class="slides">
 		<section>
-			<h1>Dagger 2</h1>
-			<h2 class="fragment">e dependency injection</h2>
+			<h1>Dependency Injection</h1>
+			<h2 class="fragment">e Dagger2</h2>
 		</section>
 
 		<section>
@@ -56,7 +56,7 @@ public class DepositoGiordani {
   private Band band;
 
  public DepositoGiordani(){
-  <span class="fragment highlight-green">this.band = new Band();</span>
+  <span style="color: lawngreen">this.band = new Band();</span>
  }
 
  public void claimRockBand(){
@@ -82,10 +82,10 @@ public class Band {
  private RockerDrummer drummer;
 
 public Band() {
- <span class="fragment highlight-green">this.guitarPlayer = new RockerGuitarist();
+ <span style="color: lawngreen">this.guitarPlayer = new RockerGuitarist();
  this.singer = new Singer();
- singer.setVoiceDecibel(70);
  this.drummer = new RockerDrummer();</span>
+ singer.setVoiceDecibel(70);
 }
 
  public void playSomething(){
@@ -107,7 +107,6 @@ public class Main {
  public static void main(String[] args) {
 
   DepositoGiordani deposito = new DepositoGiordani();
-
   depositoGiordani.hiresRockBand();
  }
 }
@@ -143,7 +142,6 @@ public class Main {
 				<h4>Band</h4>
                     <pre><code data-trim data-noescape>
 public class Band {
-
  private <span style="color: lawngreen">Guitarist guitarPlayer;</span>
  private Singer singer;
  private <span style="color: lawngreen">Drummer drummer;</span>
@@ -164,48 +162,32 @@ public class Band {
 			</section>
 
 			<section>
-				<div class="row">
-					<div class="left">
 
-
-
-						<h4>Main_v2</h4>
-                    <pre width="auto"><code style="font-size: medium" data-trim data-noescape>
-public class Main {
-
- public static void main(String[] args) {
-
-  Singer singer = new Singer();
-  <span style="color: lawngreen">Drummer drummer =
-   		new PopDrummer(new Drums());</span>
-  <span style="color: lawngreen">Guitarist guitarist =
-		new PopGuitarist(new AcusticGuitar());</span>
-  Band band =
-		new Band(guitarist, singer, drummer);
-
-  DepositoGiordani giordani =
-		new DepositoGiordani(band);
-  giordani.hiresPopBand();
-}
-}
-					</code></pre>
-					</div>
-					<div class="right">
-						<h4>Main_v1</h4>
+				<p>Main_v1</p>
 					<pre width="auto"><code style="font-size: medium" data-trim>
 public class Main {
-  public static void main(String[] args) {
-
-  DepositoGiordani deposito =
-		new DepositoGiordani();
-
+ public static void main(String[] args) {
+  DepositoGiordani deposito = new DepositoGiordani();
   depositoGiordani.hiresRockBand();
  }
 }
 					</code></pre>
-					</div>
-				</div>
-				<p class="fragment">E il test?</p>
+
+
+						<p>Main_v2</p>
+                    <pre width="auto"><code style="font-size: medium" data-trim data-noescape>
+public class Main {
+ public static void main(String[] args) {
+  Singer singer = new Singer();
+  <span style="color: lawngreen">Drummer drummer = new PopDrummer(new Drums());</span>
+  <span style="color: lawngreen">Guitarist guitarist = new PopGuitarist(new AcusticGuitar());</span>
+  Band band = new Band(guitarist, singer, drummer);
+
+  DepositoGiordani giordani = new DepositoGiordani(band);
+  giordani.hiresPopBand();
+ }
+}
+					</code></pre>
 			</section>
 
 			<section>
@@ -245,15 +227,6 @@ public class BandTest {
 
 		<section>
 			<section>
-				<h3>Dagger 2</h3>
-				<ul>
-					<li>è un framework basato sulla dependency injection</li>
-					<li>aumenta la riutilizzabilità del codice</li>
-					<li>disaccoppia le classi unite tra loro da una relazione</li>
-					<li>facilita lo sviluppo in caso di Unit Test</li>
-				</ul>
-			</section>
-			<section>
 				<h3>Dependency Injection</h3>
 				<div class="row">
 					<div class="left">
@@ -262,19 +235,14 @@ public class BandTest {
 					<p style="font-size: smaller">Il legame tra le classi è esterno: nessun oggetto istanzia un altro oggetto, questo compito è delegato ad una terza classe di configurazione che fornisce le istanze stesse</p>
 				</div>
 			</section>
-
 		</section>
 
 		<section>
+
 			<section>
 				<h2>Dagger2</h2>
-				<p>Dagger fornisce delle classi "helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
-				<p style="font-size: smaller">nb: le vecchie librerie sfruttavano la Reflection di Java che invece avviene tutto a RunTime</p>
-			</section>
-			<section>
-				<h2>Dagger2</h2>
-				<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>
-				<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>
+				<!--<p>Dagger ha la caratteristica, che piace a noi sviluppatori, di sfruttare l'Annotation processing di Java</p>-->
+				<!--<p style="font-size: smaller">e non gli xml come altre librerie di dependency injection (es.Spring)</p>-->
 
 				<ul>
 					<li>@Module</li>
@@ -295,10 +263,10 @@ public class BandTest {
 			<section>
 				<h3>@Component</h3>
 				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
-			</section>
-			<section>
+				<div class="fragment fade-up">
 				<h3>@Iject</h3>
-				<p></p>
+				<p>Indica dove creare l'oggetto</p>
+				</div>
 			</section>
 		</section>
 		<section>
@@ -349,93 +317,37 @@ public class Band{
 }
 						</code></pre>
 			</section>
+		</section>
+
+		<section>
 			<section>
 				<h4>Main</h4>
-						<pre class="stretch"><code data-trim>
+				<p>Dagger fornisce delle classi "helper" che espongono un builder statico, il quale si occupa della costruzione delle dipendenze a CompileTime</p>
+				<pre><code data-trim>
 public class Main {
   public static void main(String[] args) {
-
    RockBandComponent rockComponent =
 		DaggerRockBandComponent
 			.builder()
 			.build();
 
-   PopBandComponent popComponent =
-		DaggerPopBandComponent
-			.builder()
-			.build();
-
-   DepositoGiordani rock =
-  		rockComponent.injectDeposito();
+   DepositoGiordani rock = rockComponent.injectDeposito();
 
    weWillRockYou = rock.hiresRockBand();
   ....
 }}
-						</code></pre>
+				</code></pre>
 			</section>
 			<section>
-						<pre class="stretch"><code data-trim style="font-size: smaller">
-public final class DaggerRockBandComponent implements RockBandComponent {
-  private Provider&lt;ElectricGuitar&gt; providesGuitarProvider;
-  private Provider&lt;Guitarist&gt; providesGuitaristProvider;
-  private Provider&lt;Singer&gt; providesSingerProvider;
-  private Provider&lt;Drums&gt; providesDrumsProvider;
-  private Provider&lt;Drummer&gt; providesDrummerProvider;
-  private Provider&lt;Band&gt; bandProvider;
-  private Provider&lt;DepositoGiordani&gt; depositoGiordaniProvider;
-
-  ...
-  @SuppressWarnings("unchecked")
-  private void initialize(final Builder builder) {
-
-   this.providesGuitarProvider =
-   		RockInstrumentModule_ProvidesGuitarFactory
-		.create(builder.rockInstrumentModule);
-
-   this.providesGuitaristProvider =
-		RockBandModule_ProvidesGuitaristFactory
-		.create(builder.rockBandModule, providesGuitarProvider);
-
-   this.providesSingerProvider =
-		DoubleCheck.provider(RockBandModule_ProvidesSingerFactory
-		.create(builder.rockBandModule));
-
-   this.providesDrumsProvider =
-		RockInstrumentModule_ProvidesDrumsFactory
-		.create(builder.rockInstrumentModule);
-
-   this.providesDrummerProvider =
-		RockBandModule_ProvidesDrummerFactory
-		.create(builder.rockBandModule, providesDrumsProvider);
-
-   this.bandProvider =
-		Band_Factory.create(
-		providesGuitaristProvider, providesSingerProvider, providesDrummerProvider);
-
-  this.depositoGiordaniProvider =
-		DepositoGiordani_Factory.create(
-		bandProvider, providesSingerProvider, providesGuitaristProvider);
-}
-
- @Override
- public Band injectBand() {
-  return new Band(
-   providesGuitaristProvider.get(),
-   providesSingerProvider.get(),
-   providesDrummerProvider.get());
-}
-
- @Override
- public DepositoGiordani injectDeposito() {
-   return new DepositoGiordani(
-   new Band(
-  ...
-}
-...
-}
-						</code></pre>
+				<h2>Dagger2</h2>
+				<ul>
+					<li>aumenta la riutilizzabilità del codice</li>
+					<li>disaccoppia le classi unite tra loro da una relazione</li>
+					<li>facilita lo sviluppo in caso di Unit Test</li>
+				</ul>
 			</section>
 		</section>
+
 		<section>
 		<section>
 			<h4>Unit Test</h4>
@@ -444,29 +356,24 @@ public final class DaggerRockBandComponent implements RockBandComponent {
 public class BandMockModule {
 
   @Provides
-  public Band providesBand(Guitarist guitarist, Singer singer, Drummer drummer){
-   return new Band(guitarist, singer, drummer);
- }
-
-  @Provides
   public Guitarist providesGuitarist(ElectricGuitar guitar){
-  Guitarist guitarist = Mockito.mock(Guitarist.class);
-   when(guitarist.playGuitar()).thenReturn("I'm Slash ");
-   return guitarist;
+   Guitarist guitarist = Mockito.mock(Guitarist.class);
+    when(guitarist.playGuitar()).thenReturn("I'm Slash ");
+    return guitarist;
  }
 
   @Provides
   public Singer providesSinger(){
-  Singer singer = Mockito.mock(Singer.class);
-   when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
-   return singer;
+   Singer singer = Mockito.mock(Singer.class);
+    when(singer.singingSomething(true)).thenReturn("I'm Axl Rose ");
+    return singer;
  }
 
   @Provides
   public Drummer providesDrummer(Drums drums){
-  Drummer drummer = Mockito.mock(Drummer.class);
-   when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
-   return drummer;
+   Drummer drummer = Mockito.mock(Drummer.class);
+    when(drummer.letsGetBeat()).thenReturn("now, let's rock!");
+    return drummer;
  }
 }
 			</code></pre>
@@ -475,7 +382,7 @@ public class BandMockModule {
 		<section>
 			<pre><code data-trim>
 @Component(modules = {BandMockModule.class, InstrumentMock.class})
-public interface BandComponentTest extends RockBandComponent {
+public interface BandComponentTest {
    Band injectBand();
 }
 			</code></pre>
@@ -484,13 +391,14 @@ public class RockBandTestDagger {
  @Test
  public void playSomething(){
   BandComponentTest component =
-  DaggerBandComponentTest
-   	.builder()
-	.build();
+  		DaggerBandComponentTest
+   			.builder()
+			.build();
 
   Band band = component.injectBand();
 
-  assertEquals("I'm Axl Rose I'm Slash now, let's rock!", band.playSomething(true));
+  assertEquals("I'm Axl Rose I'm Slash now, let's rock!",
+				band.playSomething(true));
  }
 }
 		</code></pre>
