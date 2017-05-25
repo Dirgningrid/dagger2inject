@@ -52,8 +52,7 @@
 
 					<pre style="width: auto"><code class="hljs" data-trim data-noescape>
 public class DepositoGiordani {
-
-  private Band band;
+ private Band band;
 
  public DepositoGiordani(){
   <span style="color: lawngreen">this.band = new Band();</span>
@@ -241,6 +240,7 @@ public class BandTest {
 
 			<section>
 				<h2>Dagger2</h2>
+				<p>crea la classe di configurazione per noi, l'importante è sapergli dire come fare, e quali oggetti vogliamo:</p>
 				<ul>
 					<li>@Module</li>
 					<li>@Component</li>
@@ -259,7 +259,7 @@ public class BandTest {
 			</section>
 			<section>
 				<h3>@Component</h3>
-				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
+				<p>Oggetto interfaccia che contiene le dipendenze, sarà lui a contattare il @Module, ottenendo i parametri di cui ha bisogno per fornire le dipendenze deboli</p>
 				<div class="fragment fade-up">
 				<h3>@Iject</h3>
 				<p>Indica dove iniettare le dipendenze che Dagger ha creato</p>
@@ -287,6 +287,21 @@ public class RockBandModule {
  }
 }
 							</code></pre>
+			</section>
+			<section>
+@Module
+public class RockInstrumentModule {
+
+ @Provides
+ public ElectricGuitar providesGuitar(){
+  return new ElectricGuitar();
+ }
+
+ @Provides
+ public Drums providesDrums(){
+  return new Drums();
+ }
+}
 			</section>
 			<section>
 				<h4>@Component e @Inject</h4>
