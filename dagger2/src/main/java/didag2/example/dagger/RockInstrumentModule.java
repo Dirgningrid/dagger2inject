@@ -25,9 +25,4 @@ public class RockInstrumentModule {
     public Drums providesDrums(){
         return new Drums();
     }
-
-    @Provides
-    public AcusticGuitar providesAcusticGuitar(){
-        return new AcusticGuitar();
-    }
 }
